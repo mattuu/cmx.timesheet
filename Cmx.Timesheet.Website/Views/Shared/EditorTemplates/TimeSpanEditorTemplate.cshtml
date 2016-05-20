@@ -1,0 +1,8 @@
+﻿@using Cmx.Timesheet.Website.Utility
+
+@model TimeSpan?
+
+<div class="@(Html.ValidationErrorFor(m => m, " has-error"))">
+    @Html.TextBoxFor(m => m, "hh\\:mm", new {@Value = string.Format("{0:hh\\:mm}", @Model), @class = "form-control"})
+    @Html.ValidationMessageFor(m => m, null, new {@class = "help-block"})
+</div>

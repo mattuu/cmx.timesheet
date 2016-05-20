@@ -1,0 +1,80 @@
+﻿@using System.Dynamic
+@model Cmx.Timesheet.Website.Models.Timesheet.TimesheetListViewModel
+
+<table class="table">
+    <tr>
+        <th>Start Date</th>
+        <th>
+            End Date
+        </th>
+        <th>
+            Created on
+        </th>
+        <th>
+            Created by
+        </th>
+        <th>
+            Submitted on
+        </th>
+        <th>
+            Submitted By
+        </th>
+        <th>
+            Approved On
+        </th>
+        <th>
+            Approved By
+        </th>
+        <th>
+            RejectedOn
+        </th>
+        <th>
+            Rejected by
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Timesheets) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timesheet.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timesheet.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timesheet.CreatedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timesheet.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timesheet.SubmittedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timesheet.SubmittedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timesheet.ApprovedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timesheet.ApprovedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timesheet.RejectedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timesheet.RejectedBy)
+        </td>
+        <td>
+            <ul>
+                @foreach (var action in Model.ActionConfigs)
+                {
+                    <li>@Html.ActionLink(action.Item1, action.Item2, action.Item3(item))</li>
+                }
+            </ul>
+        </td>
+    </tr>
+}
+
+</table>

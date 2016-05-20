@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4F794B32-554C-4217-AAA2-BA1A492604B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.WebApi", "Cmx.Timesheet.WebApi\Cmx.Timesheet.WebApi.csproj", "{401C7CC9-9FED-44CF-BE93-7CC2DA6CFEC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Website", "Cmx.Timesheet.Website\Cmx.Timesheet.Website.csproj", "{D25A19AA-39BB-46EF-94A7-8423982D55F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Website.Tests", "Cmx.Timesheet.Website.Tests\Cmx.Timesheet.Website.Tests.csproj", "{90740F24-AAA3-4513-B581-1605F87872DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.DomainModel", "Cmx.Timesheet.DomainModel\Cmx.Timesheet.DomainModel.csproj", "{AC28BF08-2151-4F46-BDBC-43D123CB9160}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Services.Tests", "Cmx.Timesheet.Services.Tests\Cmx.Timesheet.Services.Tests.csproj", "{68BF9BD4-AA07-40E9-864B-6ABE53C551BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Services", "Cmx.Timesheet.Services\Cmx.Timesheet.Services.csproj", "{108A749A-3949-4D8A-AA75-C327B1929A60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{401C7CC9-9FED-44CF-BE93-7CC2DA6CFEC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{401C7CC9-9FED-44CF-BE93-7CC2DA6CFEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{401C7CC9-9FED-44CF-BE93-7CC2DA6CFEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{401C7CC9-9FED-44CF-BE93-7CC2DA6CFEC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D25A19AA-39BB-46EF-94A7-8423982D55F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D25A19AA-39BB-46EF-94A7-8423982D55F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D25A19AA-39BB-46EF-94A7-8423982D55F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D25A19AA-39BB-46EF-94A7-8423982D55F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90740F24-AAA3-4513-B581-1605F87872DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90740F24-AAA3-4513-B581-1605F87872DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90740F24-AAA3-4513-B581-1605F87872DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90740F24-AAA3-4513-B581-1605F87872DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC28BF08-2151-4F46-BDBC-43D123CB9160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC28BF08-2151-4F46-BDBC-43D123CB9160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC28BF08-2151-4F46-BDBC-43D123CB9160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC28BF08-2151-4F46-BDBC-43D123CB9160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68BF9BD4-AA07-40E9-864B-6ABE53C551BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68BF9BD4-AA07-40E9-864B-6ABE53C551BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68BF9BD4-AA07-40E9-864B-6ABE53C551BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68BF9BD4-AA07-40E9-864B-6ABE53C551BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{108A749A-3949-4D8A-AA75-C327B1929A60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{108A749A-3949-4D8A-AA75-C327B1929A60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{108A749A-3949-4D8A-AA75-C327B1929A60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{108A749A-3949-4D8A-AA75-C327B1929A60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{68BF9BD4-AA07-40E9-864B-6ABE53C551BA} = {4F794B32-554C-4217-AAA2-BA1A492604B5}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://uliasz.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Cmx.Timesheet.DomainModel\\Cmx.Timesheet.DomainModel.csproj
+		SccProjectName1 = Cmx.Timesheet.DomainModel
+		SccLocalPath1 = Cmx.Timesheet.DomainModel
+		SccProjectUniqueName2 = Cmx.Timesheet.Services.Tests\\Cmx.Timesheet.Services.Tests.csproj
+		SccProjectTopLevelParentUniqueName2 = Cmx.Timesheet.sln
+		SccProjectName2 = Cmx.Timesheet.Services.Tests
+		SccLocalPath2 = Cmx.Timesheet.Services.Tests
+		SccProjectUniqueName3 = Cmx.Timesheet.Services\\Cmx.Timesheet.Services.csproj
+		SccProjectName3 = Cmx.Timesheet.Services
+		SccLocalPath3 = Cmx.Timesheet.Services
+		SccProjectUniqueName4 = Cmx.Timesheet.WebApi\\Cmx.Timesheet.WebApi.csproj
+		SccProjectName4 = Cmx.Timesheet.WebApi
+		SccLocalPath4 = Cmx.Timesheet.WebApi
+		SccProjectUniqueName5 = Cmx.Timesheet.Website.Tests\\Cmx.Timesheet.Website.Tests.csproj
+		SccProjectName5 = Cmx.Timesheet.Website.Tests
+		SccLocalPath5 = Cmx.Timesheet.Website.Tests
+		SccProjectUniqueName6 = Cmx.Timesheet.Website\\Cmx.Timesheet.Website.csproj
+		SccProjectName6 = Cmx.Timesheet.Website
+		SccLocalPath6 = Cmx.Timesheet.Website
+	EndGlobalSection
+EndGlobal

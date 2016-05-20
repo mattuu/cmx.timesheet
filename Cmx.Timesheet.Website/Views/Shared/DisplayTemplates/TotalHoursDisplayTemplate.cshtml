@@ -1,0 +1,15 @@
+﻿@model TimeSpan?
+@{
+    var ts = Model ?? TimeSpan.Zero;
+}
+
+
+@Html.DisplayFor(m => ts, "TimeSpanDisplayTemplate", new { @class = "form-control-static", onload = "calculate()" })
+
+<span id="@Html.Id("")">@ts</span>
+
+<script type="text/javascript">
+    function calculate() {
+        console.log('CALCULATE!!!');
+    }
+</script>

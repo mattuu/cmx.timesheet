@@ -1,0 +1,12 @@
+﻿@using Cmx.Timesheet.Website.App_Code
+
+@helper Panel(PanelModel panelContent) { 
+<div class="panel panel-@panelContent.Context.ToString().ToLower()">
+    <div class="panel-heading">
+        <span class="panel-title">@panelContent.Title</span>
+    </div>
+    <div class="panel-body">
+        
+    </div>
+</div>
+}

@@ -1,0 +1,48 @@
+﻿@model Cmx.Timesheet.Website.Models.Timesheet.EditTimesheetViewModel
+@{
+    var i = 0;
+}
+
+
+    <div class="form-horizontal">
+        <ul class="list-inline">
+            @foreach (var calendarDay in Model.Calendar)
+            {
+                <li style="width: 200px;">
+                    @Html.EditorFor(m => calendarDay, "CalendarDayEditorView", string.Format("Calendar[{0}]", i), new { Index = i++ })
+                </li>
+            }
+
+        </ul>
+        @*<table class="table table-condensed">
+            <thead>
+            <tr>
+                <td>Date</td>
+                <td>Start</td>
+                <td>Break From</td>
+                <td>Break To</td>
+                <td>Finish</td>
+                <td>Total Hrs</td>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var workDay in @Model.Calendar)
+                {
+                    <tr>
+                        <td>
+                            @Html.Hidden(string.Format("Calendar[{0}].Id", i), @workDay.Id)
+                            @Html.DisplayFor(m => @workDay.Date, "ShortDateDisplayTemplate")
+                            @Html.Hidden(string.Format("Calendar[{0}].Date", i), @workDay.Date)
+                        </td>
+                        <td>@Html.EditorFor(m => @workDay.StartTime, "TimeSpanEditorTemplate", string.Format("Calendar[{0}].StartTime", i))</td>
+                        <td>@Html.EditorFor(m => @workDay.BreakStartTime, "TimeSpanEditorTemplate", string.Format("Calendar[{0}].BreakStartTime", i))</td>
+                        <td>@Html.EditorFor(m => @workDay.BreakEndTime, "TimeSpanEditorTemplate", string.Format("Calendar[{0}].BreakEndTime", i))</td>
+                        <td>@Html.EditorFor(m => @workDay.EndTime, "TimeSpanEditorTemplate", string.Format("Calendar[{0}].EndTime", i))</td>
+                        <td>@Html.DisplayFor(m => @workDay.TotalHours, "TotalHoursDisplayTemplate", string.Format("Calendar[{0}].TotalHrs", i))</td>
+                    </tr>
+                    i++;
+                }
+            </tbody>*@
+        </table>       
+    </div>
+

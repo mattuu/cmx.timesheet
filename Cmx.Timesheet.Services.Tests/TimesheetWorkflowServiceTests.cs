@@ -22,49 +22,63 @@ namespace Cmx.Timesheet.Services.Tests
         }
 
         [TestMethod]
-        public void SubmitTimesheet_ShouldSet_TimesheetStatus_To_Submitted()
+        public void SubmitTimesheet_ShouldCall_UpdateTimesheet_On_ITimesheetStore_With_TimesheetStatus_Equals_Submitted()
+        {
+            _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<int>())).Returns<int>(id => new TimesheetModel { Id = id });
+
+            _timesheetStoreMock.Setup(s => s.UpdateTimesheet(It.Is<TimesheetUpdateModel>(tm => tm.Status == TimesheetStatus.Submitted))).Verifiable();
+
+            _service.SubmitTimesheet(_fixture.Create<int>());
+
+            _timesheetStoreMock.VerifyAll();
+        }
+
+        [TestMethod]
+        public void ApproveTimesheet_ShouldCall_UpdateTimesheet_On_ITimesheetStore_With_TimesheetStatus_Equals_Approved()
         {
             _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<int>())).Returns<int>(id => new TimesheetModel {Id = id});
-            CheckStatusAfterAction(_fixture.Create<int>(), id => _service.SubmitTimesheet(id), TimesheetStatus.Submitted);
+
+            _timesheetStoreMock.Setup(s => s.UpdateTimesheet(It.Is<TimesheetUpdateModel>(tm => tm.Status == TimesheetStatus.Approved))).Verifiable();
+
+            _service.ApproveTimesheet(_fixture.Create<int>());
+        
+            _timesheetStoreMock.VerifyAll();
         }
 
         [TestMethod]
-        public void ApproveTimesheet_ShouldSet_TimesheetStatus_To_Approved()
+        public void RejectTimesheet_ShouldCall_UpdateTimesheet_On_ITimesheetStore_With_TimesheetStatus_Equals_Rejected()
         {
-            CheckStatusAfterAction(1, id => _service.ApproveTimesheet(id), TimesheetStatus.Approved);
-        }
+            _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<int>())).Returns<int>(id => new TimesheetModel { Id = id });
 
-        [TestMethod]
-        public void RejectTimesheet_ShouldSet_TimesheetStatus_To_Rejected()
-        {
-            CheckStatusAfterAction(1, id => _service.RejectTimesheet(id), TimesheetStatus.Rejected);
-        }
+            _timesheetStoreMock.Setup(s => s.UpdateTimesheet(It.Is<TimesheetUpdateModel>(tm => tm.Status == TimesheetStatus.Rejected))).Verifiable();
 
-        [TestMethod]
-        [ExpectedException(typeof (NullReferenceException))]
-        public void SubmitTimesheetThrowsExceptionIfTimesheetNotFoundInRepo()
-        {
-            _service.SubmitTimesheet(9999);
+            _service.RejectTimesheet(_fixture.Create<int>());
+
+            _timesheetStoreMock.VerifyAll();
         }
 
         [TestMethod]
         [ExpectedException(typeof (NullReferenceException))]
-        public void ApproveTimesheetThrowsExceptionIfTimesheetNotFoundInRepo()
+        public void SubmitTimesheet_ThrowsException_If_TimesheetStoreReturnsNull()
         {
-            _service.ApproveTimesheet(9999);
+            _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<int>())).Returns<int>(null);
+            _service.SubmitTimesheet(_fixture.Create<int>());
         }
 
         [TestMethod]
         [ExpectedException(typeof (NullReferenceException))]
-        public void RejectTimesheetThrowsExceptionIfTimesheetNotFoundInRepo()
+        public void ApproveTimesheet_ThrowsException_If_TimesheetStoreReturnsNull()
         {
-            _service.RejectTimesheet(9999);
+            _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<int>())).Returns<int>(null);
+            _service.ApproveTimesheet(_fixture.Create<int>());
         }
 
-        private void CheckStatusAfterAction(int id, Action<int> action, TimesheetStatus status)
+        [TestMethod]
+        [ExpectedException(typeof (NullReferenceException))]
+        public void RejectTimesheet_ThrowsException_If_TimesheetStoreReturnsNull()
         {
-            action(id);
-            Assert.AreEqual(status, _timesheetStoreMock.Object.GetTimesheetById(id).Status);
+            _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<int>())).Returns<int>(null);
+            _service.RejectTimesheet(_fixture.Create<int>());
         }
     }
 }

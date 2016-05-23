@@ -4,20 +4,14 @@ using Cmx.Timesheet.DomainModel.Configuration;
 
 namespace Cmx.Timesheet.DomainModel
 {
-    public class TimesheetModel
+    public class TimesheetModel : TimesheetModelBase
     {
         public TimesheetModel()
         {
             WorkDays = new HashSet<WorkDayModel>();
         }
 
-        public int Id { get; set; }
-
         public TimesheetConfigModel Configuration { get; set; }
-
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

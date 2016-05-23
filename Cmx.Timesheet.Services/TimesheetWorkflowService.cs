@@ -36,9 +36,15 @@ namespace Cmx.Timesheet.Services
         private void ChangeStatus(int timesheetId, TimesheetStatus status)
         {
             var timesheet = FindTimesheet(timesheetId);
-            timesheet.Status = status;
-            //new TimesheetUpdateModel()
-            //_timesheetStore.UpdateTimesheet(timesheet);
+
+            _timesheetStore.UpdateTimesheet(new TimesheetUpdateModel
+            {
+                Id = timesheetId,
+                StartDate = timesheet.StartDate,
+                EndDate = timesheet.EndDate,
+                WorkDays = timesheet.WorkDays,
+                Status = status
+            });
         }
 
         private TimesheetModel FindTimesheet(int timesheetId)

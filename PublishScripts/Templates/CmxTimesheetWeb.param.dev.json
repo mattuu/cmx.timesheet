@@ -1,0 +1,29 @@
+{
+  "siteName": {
+    "value": "Cmx-Timesheets"
+  },
+  "hostingPlanName": {
+    "value": "Cmx.Timesheet.ServicePlan"
+  },
+  "siteLocation": {
+    "value": "West Europe"
+  },
+  "sku": {
+    "value": "Free"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "siteMode": {
+    "value": "Limited"
+  },
+  "computeMode": {
+    "value": "0"
+  },
+  "subscriptionId": {
+    "value": "aa321efd-421b-4c16-a903-09e293d13eb2"
+  },
+  "resourceGroup": {
+    "value": "Cmx.Timesheet"
+  }
+}

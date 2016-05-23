@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4F794B32
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.WebApi", "Cmx.Timesheet.WebApi\Cmx.Timesheet.WebApi.csproj", "{401C7CC9-9FED-44CF-BE93-7CC2DA6CFEC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Website", "Cmx.Timesheet.Website\Cmx.Timesheet.Website.csproj", "{D25A19AA-39BB-46EF-94A7-8423982D55F1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Website.Tests", "Cmx.Timesheet.Website.Tests\Cmx.Timesheet.Website.Tests.csproj", "{90740F24-AAA3-4513-B581-1605F87872DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.DomainModel", "Cmx.Timesheet.DomainModel\Cmx.Timesheet.DomainModel.csproj", "{AC28BF08-2151-4F46-BDBC-43D123CB9160}"
@@ -24,6 +22,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BC99F5
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Web", "Cmx.Timesheet.Web\Cmx.Timesheet.Web.csproj", "{8E8C2EB7-5E11-4795-8B32-C6DC456653E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{6987ACD4-6C47-4513-BF9F-369E4C9BDF1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{1CAAE507-16F5-4E2D-A892-C39D0C9353C7}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{7DD5F5F6-87F5-4A74-B7CF-478EE12AAB62}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\CmxTimesheetWeb.json = PublishScripts\Templates\CmxTimesheetWeb.json
+		PublishScripts\Templates\CmxTimesheetWeb.param.dev.json = PublishScripts\Templates\CmxTimesheetWeb.param.dev.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +47,6 @@ Global
 		{401C7CC9-9FED-44CF-BE93-7CC2DA6CFEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{401C7CC9-9FED-44CF-BE93-7CC2DA6CFEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{401C7CC9-9FED-44CF-BE93-7CC2DA6CFEC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D25A19AA-39BB-46EF-94A7-8423982D55F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D25A19AA-39BB-46EF-94A7-8423982D55F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D25A19AA-39BB-46EF-94A7-8423982D55F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D25A19AA-39BB-46EF-94A7-8423982D55F1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90740F24-AAA3-4513-B581-1605F87872DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90740F24-AAA3-4513-B581-1605F87872DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90740F24-AAA3-4513-B581-1605F87872DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,6 +63,10 @@ Global
 		{108A749A-3949-4D8A-AA75-C327B1929A60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{108A749A-3949-4D8A-AA75-C327B1929A60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{108A749A-3949-4D8A-AA75-C327B1929A60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E8C2EB7-5E11-4795-8B32-C6DC456653E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E8C2EB7-5E11-4795-8B32-C6DC456653E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E8C2EB7-5E11-4795-8B32-C6DC456653E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E8C2EB7-5E11-4795-8B32-C6DC456653E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,5 +74,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{90740F24-AAA3-4513-B581-1605F87872DC} = {4F794B32-554C-4217-AAA2-BA1A492604B5}
 		{68BF9BD4-AA07-40E9-864B-6ABE53C551BA} = {4F794B32-554C-4217-AAA2-BA1A492604B5}
+		{1CAAE507-16F5-4E2D-A892-C39D0C9353C7} = {6987ACD4-6C47-4513-BF9F-369E4C9BDF1C}
+		{7DD5F5F6-87F5-4A74-B7CF-478EE12AAB62} = {6987ACD4-6C47-4513-BF9F-369E4C9BDF1C}
 	EndGlobalSection
 EndGlobal

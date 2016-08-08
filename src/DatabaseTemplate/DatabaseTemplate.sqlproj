@@ -98,8 +98,4 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="J2BI.Namespace.Template.Database.refactorlog" />
-  </ItemGroup>
 </Project>
-

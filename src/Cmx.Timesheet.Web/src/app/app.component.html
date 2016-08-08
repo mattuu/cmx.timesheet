@@ -1,0 +1,35 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                AppTitleTemplate
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">
+                        <j2bi-spinner [isBusy]="!(appVersion$ | async)" [spinnerSize]="'20'">
+                            {{userName$ | async}}
+                        </j2bi-spinner>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<body>
+    <div class="container-fluid">
+        <j2bi-confirmation-modal></j2bi-confirmation-modal>
+        <j2bi-spinner-modal></j2bi-spinner-modal>
+        <router-outlet></router-outlet>
+
+        <div class="version label label-default">
+            <j2bi-spinner [isBusy]="!(appVersion$ | async)" [spinnerSize]="'10'">
+                {{appVersion$ | async}}
+            </j2bi-spinner>
+        </div>
+    </div>
+</body>

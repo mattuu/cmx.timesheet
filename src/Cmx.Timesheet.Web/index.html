@@ -1,0 +1,42 @@
+﻿<html>
+<head>
+    <title>AppTitleTemplate</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<base href="/" />
+    <!-- <script type="text/javascript">
+        document.write("<base href='" + document.location.pathname.slice(0, document.location.pathname.indexOf("/", 1) + 1) + "' />");
+    </script> -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="src/assets/styles/bootstrap.simplex.css" rel="stylesheet" />
+    <link href="node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <link href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="src/assets/styles/style.css">
+    <script src="node_modules/core-js/client/shim.js"></script>
+    <script src="node_modules/zone.js/dist/zone.min.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!--removeIf(nonDev)-->
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script>
+        System.import("app").catch(function (err) { console.error(err); });
+    </script>
+    <!--endRemoveIf(nonDev)-->
+</head>
+<app-name-template-app>
+    <div class="outer">
+        <div class="middle">
+            <div class="inner">
+                <img src="src/assets/images/loader.gif" />
+                <h4>
+                    Loading, please wait...
+                </h4>
+            </div>
+        </div>
+    </div>
+</app-name-template-app>
+</html>

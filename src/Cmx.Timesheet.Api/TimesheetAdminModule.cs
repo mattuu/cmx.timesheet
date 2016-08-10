@@ -18,11 +18,11 @@ namespace Cmx.Timesheet.Api
             _timesheetStore = timesheetStore;
             _timesheetWorkflowService = timesheetWorkflowService;
 
-            Get("/timesheet", async _ =>
-            {
-                var data = _timesheetStore.GetTimesheets();
-                return await Task.FromResult(data);
-            });
+            //Get("/timesheet", async _ =>
+            //{
+            //    var data = _timesheetStore.GetTimesheets();
+            //    return await Task.FromResult(data);
+            //});
 
             //Get("/timesheet/{id}", async (id, token) =>
             //{

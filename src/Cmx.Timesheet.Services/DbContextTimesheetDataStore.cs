@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.DomainModel;
 
@@ -6,7 +7,7 @@ namespace Cmx.Timesheet.Services
 {
     public class DbContextTimesheetDataStore : ITimesheetDataStore
     {
-        public IEnumerable<TimesheetModel> GetTimesheets()
+        public Task<IEnumerable<TimesheetModel>> GetTimesheets()
         {
             throw new System.NotImplementedException();
         }
@@ -16,7 +17,7 @@ namespace Cmx.Timesheet.Services
             throw new System.NotImplementedException();
         }
 
-        public TimesheetModel GetTimesheetById(int timesheetId)
+        public Task<TimesheetModel> GetTimesheetById(int timesheetId)
         {
             throw new System.NotImplementedException();
         }

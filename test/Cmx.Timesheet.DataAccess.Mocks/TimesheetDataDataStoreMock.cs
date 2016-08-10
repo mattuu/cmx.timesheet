@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cmx.Timesheet.DomainModel;
 using Cmx.Timesheet.Services;
 using Ploeh.AutoFixture;
@@ -16,11 +17,10 @@ namespace Cmx.Timesheet.DataAccess.Mocks
             _fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-        public IEnumerable<TimesheetModel> GetTimesheets()
+        public Task<IEnumerable<TimesheetModel>> GetTimesheets()
         {
             var count = new Random().Next(10, 30);
-
-            return _fixture.CreateMany<TimesheetModel>(count);
+            return Task.FromResult(_fixture.CreateMany<TimesheetModel>(count));
         }
 
         public IEnumerable<TimesheetModel> GetTimesheetsByUser(int ownerId)
@@ -28,11 +28,11 @@ namespace Cmx.Timesheet.DataAccess.Mocks
             throw new NotImplementedException();
         }
 
-        public TimesheetModel GetTimesheetById(int timesheetId)
+        public Task<TimesheetModel> GetTimesheetById(int timesheetId)
         {
-            return _fixture.Build<TimesheetModel>()
-                           .With(t => t.Id, timesheetId)
-                           .Create();
+            return Task.FromResult(_fixture.Build<TimesheetModel>()
+                                           .With(t => t.Id, timesheetId)
+                                           .Create());
         }
 
         public void DeleteTimesheet(int timesheetId)

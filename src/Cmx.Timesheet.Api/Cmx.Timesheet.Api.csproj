@@ -117,7 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NancyBootstrapper.cs" />
-    <Compile Include="App_Start\CustomRootPathProvider.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Filters\CreateEmptyActionInstanceIfNullAttribute.cs" />
     <Compile Include="Filters\EnableRoleImpersonationAttribute.cs" />

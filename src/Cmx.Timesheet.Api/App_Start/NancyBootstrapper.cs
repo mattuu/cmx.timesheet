@@ -7,8 +7,6 @@ namespace Cmx.Timesheet.Api
 {
     public class NancyBootstrapper : UnityNancyBootstrapper
     {
-        //protected override IRootPathProvider RootPathProvider => new CustomRootPathProvider();
-
         protected override INancyEnvironmentConfigurator GetEnvironmentConfigurator()
         {
             return ApplicationContainer.Resolve<INancyEnvironmentConfigurator>();
@@ -27,8 +25,6 @@ namespace Cmx.Timesheet.Api
         protected override void ConfigureRequestContainer(IUnityContainer container, NancyContext context)
         {
             UnityConfig.RegisterComponents(container);
-
-            //base.ConfigureRequestContainer(container, context);
         }
     }
 }

@@ -56,7 +56,8 @@ namespace Cmx.Timesheet.Services
                 throw new NullReferenceException(string.Format("Timesheet not found for id {0}", timesheetId));
             }
 
-            return timesheet;
+            // TODO: change to async..
+            return timesheet.Result;
         }
     }
 }

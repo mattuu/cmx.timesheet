@@ -23,13 +23,13 @@ namespace Cmx.Timesheet.Api
             Get("", async _ =>
             {
                 var data = _timesheetDataStore.GetTimesheets();
-                return await Task.FromResult(data);
+                return await data;
             });
 
             Get<TimesheetModel>("/{id}", async parameters =>
             {
                 var data = _timesheetDataStore.GetTimesheetById(parameters.id);
-                return await Task.FromResult(data);
+                return await data;
             });
 
             Post("/{id}", async timesheetModel =>

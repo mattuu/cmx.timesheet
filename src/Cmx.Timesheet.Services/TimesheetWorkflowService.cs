@@ -1,16 +1,17 @@
 ﻿using System;
+using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.DomainModel;
 
 namespace Cmx.Timesheet.Services
 {
     public class TimesheetWorkflowService : ITimesheetWorkflowService
     {
-        private readonly ITimesheetStore _timesheetStore;
+        private readonly ITimesheetDataStore _timesheetDataStore;
 
-        public TimesheetWorkflowService(ITimesheetStore timesheetStore)
+        public TimesheetWorkflowService(ITimesheetDataStore timesheetDataStore)
         {
-            if (timesheetStore == null) throw new ArgumentNullException("timesheetStore");
-            _timesheetStore = timesheetStore;
+            if (timesheetDataStore == null) throw new ArgumentNullException("timesheetDataStore");
+            _timesheetDataStore = timesheetDataStore;
         }
 
         public void SubmitTimesheet(int timesheetId)
@@ -37,7 +38,7 @@ namespace Cmx.Timesheet.Services
         {
             var timesheet = FindTimesheet(timesheetId);
 
-            _timesheetStore.UpdateTimesheet(new TimesheetUpdateModel
+            _timesheetDataStore.UpdateTimesheet(new TimesheetUpdateModel
             {
                 Id = timesheetId,
                 StartDate = timesheet.StartDate,
@@ -49,7 +50,7 @@ namespace Cmx.Timesheet.Services
 
         private TimesheetModel FindTimesheet(int timesheetId)
         {
-            var timesheet = _timesheetStore.GetTimesheetById(timesheetId);
+            var timesheet = _timesheetDataStore.GetTimesheetById(timesheetId);
             if (timesheet == null)
             {
                 throw new NullReferenceException(string.Format("Timesheet not found for id {0}", timesheetId));

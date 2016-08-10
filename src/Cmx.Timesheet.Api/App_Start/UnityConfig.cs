@@ -1,3 +1,4 @@
+using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.DataAccess.Mocks;
 using Cmx.Timesheet.Services;
 using Microsoft.Practices.Unity;
@@ -21,7 +22,7 @@ namespace Cmx.Timesheet.Api
 
         private static void RegisterDataStores(IUnityContainer container)
         {
-            container.RegisterType<ITimesheetStore, TimesheetDataStoreMock>();
+            container.RegisterType<ITimesheetDataStore, TimesheetDataDataStoreMock>();
         }
     }
 }

@@ -128,11 +128,16 @@
     <Compile Include="TimesheetApprovalModule.cs" />
     <Compile Include="TimesheetConfigurationModule.cs" />
     <Compile Include="TimesheetModule.cs" />
+    <Compile Include="TimesheetWorkflowModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\test\Cmx.Timesheet.DataAccess.Mocks\Cmx.Timesheet.DataAccess.Mocks.csproj">
       <Project>{F51BAA67-BE26-45F7-8215-D40551679F66}</Project>
       <Name>Cmx.Timesheet.DataAccess.Mocks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cmx.Timesheet.DataAccess\Cmx.Timesheet.DataAccess.csproj">
+      <Project>{78506DD1-2EA8-48B5-9561-9A19E7EAD979}</Project>
+      <Name>Cmx.Timesheet.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cmx.Timesheet.DomainModel\Cmx.Timesheet.DomainModel.csproj">
       <Project>{AC28BF08-2151-4F46-BDBC-43D123CB9160}</Project>

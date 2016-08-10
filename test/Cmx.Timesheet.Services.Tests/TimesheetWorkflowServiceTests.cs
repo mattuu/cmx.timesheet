@@ -1,4 +1,5 @@
 ﻿using System;
+using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.DomainModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -10,14 +11,14 @@ namespace Cmx.Timesheet.Services.Tests
     public class TimesheetWorkflowServiceTests
     {
         private TimesheetWorkflowService _service;
-        private Mock<ITimesheetStore> _timesheetStoreMock;
+        private Mock<ITimesheetDataStore> _timesheetStoreMock;
         private Fixture _fixture;
 
         [TestInitialize]
         public void Init()
         {
             _fixture = new Fixture();
-            _timesheetStoreMock = _fixture.Freeze<Mock<ITimesheetStore>>();
+            _timesheetStoreMock = _fixture.Freeze<Mock<ITimesheetDataStore>>();
             _service = new TimesheetWorkflowService(_timesheetStoreMock.Object);
         }
 

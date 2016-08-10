@@ -9,8 +9,16 @@ namespace Cmx.Timesheet.DataAccess
 {
     public interface ITimesheetDataStore
     {
-        IEnumerable<TimesheetModel> GetTimesheetsByUser(string username);
+        IEnumerable<TimesheetModel> GetTimesheets();
 
-        void UpdateTimesheet(TimesheetUpdateModel updateModel);
+        IEnumerable<TimesheetModel> GetTimesheetsByUser(int ownerId);
+
+        TimesheetModel GetTimesheetById(int timesheetId);
+
+        TimesheetModel UpdateTimesheet(TimesheetUpdateModel timesheetUpdateModel);
+
+        TimesheetModel InsertTimesheet(TimesheetModel timesheetModel);
+
+        void DeleteTimesheet(int timesheetId);
     }
 }

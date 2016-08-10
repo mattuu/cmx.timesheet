@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.DomainModel;
 using Cmx.Timesheet.Services;
 using Nancy;
@@ -8,32 +9,32 @@ namespace Cmx.Timesheet.Api
 {
     public sealed class TimesheetModule : NancyModule
     {
-        private readonly ITimesheetStore _timesheetStore;
+        private readonly ITimesheetDataStore _timesheetDataStore;
         private readonly ITimesheetWorkflowService _timesheetWorkflowService;
 
-        public TimesheetModule(ITimesheetStore timesheetStore, ITimesheetWorkflowService timesheetWorkflowService)
+        public TimesheetModule(ITimesheetDataStore timesheetDataStore, ITimesheetWorkflowService timesheetWorkflowService)
             : base("/api/timesheet")
         {
-            if (timesheetStore == null) throw new ArgumentNullException("timesheetStore");
+            if (timesheetDataStore == null) throw new ArgumentNullException("timesheetDataStore");
             if (timesheetWorkflowService == null) throw new ArgumentNullException("timesheetWorkflowService");
-            _timesheetStore = timesheetStore;
+            _timesheetDataStore = timesheetDataStore;
             _timesheetWorkflowService = timesheetWorkflowService;
 
             Get("", async _ =>
             {
-                var data = _timesheetStore.GetTimesheets();
+                var data = _timesheetDataStore.GetTimesheets();
                 return await Task.FromResult(data);
             });
 
             Get<TimesheetModel>("/{id}", async parameters =>
             {
-                var data = _timesheetStore.GetTimesheetById(parameters.id);
+                var data = _timesheetDataStore.GetTimesheetById(parameters.id);
                 return await Task.FromResult(data);
             });
 
             Post("/{id}", async timesheetModel =>
             {
-                _timesheetStore.InsertTimesheet(timesheetModel);
+                _timesheetDataStore.InsertTimesheet(timesheetModel);
                 return await Task.FromResult(HttpStatusCode.Created);
             });
 

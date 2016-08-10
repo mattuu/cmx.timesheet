@@ -6,11 +6,11 @@ using Ploeh.AutoFixture;
 
 namespace Cmx.Timesheet.DataAccess.Mocks
 {
-    public class TimesheetDataStoreMock : ITimesheetStore
+    public class TimesheetDataDataStoreMock : ITimesheetDataStore
     {
         private readonly Fixture _fixture;
 
-        public TimesheetDataStoreMock()
+        public TimesheetDataDataStoreMock()
         {
             _fixture = new Fixture();
             _fixture.Behaviors.Add(new OmitOnRecursionBehavior());

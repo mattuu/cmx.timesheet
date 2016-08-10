@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.DomainModel;
-using Cmx.Timesheet.DomainModel.Configuration;
 
 namespace Cmx.Timesheet.Services
 {
-    public class DbContextTimesheetStore : ITimesheetStore
+    public class DbContextTimesheetDataStore : ITimesheetDataStore
     {
         public IEnumerable<TimesheetModel> GetTimesheets()
         {

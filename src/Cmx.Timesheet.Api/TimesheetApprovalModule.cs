@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.Services;
 using Nancy;
 using HttpStatusCode = System.Net.HttpStatusCode;
@@ -9,26 +10,26 @@ namespace Cmx.Timesheet.Api
     //[RoutePrefix("api/approver")]
     public sealed class TimesheetApprovalModule : NancyModule
     {
-        private readonly ITimesheetStore _timesheetStore;
+        private readonly ITimesheetDataStore _timesheetDataStore;
         private readonly ITimesheetWorkflowService _timesheetWorkflowService;
 
-        public TimesheetApprovalModule(ITimesheetStore timesheetStore, ITimesheetWorkflowService timesheetWorkflowService)
+        public TimesheetApprovalModule(ITimesheetDataStore timesheetDataStore, ITimesheetWorkflowService timesheetWorkflowService)
             : base("/api")
         {
-            if (timesheetStore == null) throw new ArgumentNullException("timesheetStore");
+            if (timesheetDataStore == null) throw new ArgumentNullException("timesheetDataStore");
             if (timesheetWorkflowService == null) throw new ArgumentNullException("timesheetWorkflowService");
-            _timesheetStore = timesheetStore;
+            _timesheetDataStore = timesheetDataStore;
             _timesheetWorkflowService = timesheetWorkflowService;
 
             //Get("/timesheet", async _ =>
             //{
-            //    var data = _timesheetStore.GetTimesheets();
+            //    var data = _timesheetDataStore.GetTimesheets();
             //    return await Task.FromResult(data);
             //});
 
             //Get("/timesheet/{id}", async (id, token) =>
             //{
-            //    var data = _timesheetStore.GetTimesheetById(id);
+            //    var data = _timesheetDataStore.GetTimesheetById(id);
             //    return await Task.FromResult(data);
             //    return data;
             //});
@@ -63,7 +64,7 @@ namespace Cmx.Timesheet.Api
         //[HttpGet]
         //public async Task<HttpResponseMessage> GetTimesheet(int id)
         //{
-        //    var data = _timesheetStore.GetTimesheetById(id);
+        //    var data = _timesheetDataStore.GetTimesheetById(id);
         //    return await Task.FromResult(Request.CreateResponse(HttpStatusCode.OK, data));
         //}
 

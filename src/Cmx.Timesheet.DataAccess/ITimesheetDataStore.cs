@@ -11,6 +11,6 @@ namespace Cmx.Timesheet.DataAccess
     {
         IEnumerable<TimesheetModel> GetTimesheetsByUser(string username);
 
-
+        void UpdateTimesheet(TimesheetUpdateModel updateModel);
     }
 }

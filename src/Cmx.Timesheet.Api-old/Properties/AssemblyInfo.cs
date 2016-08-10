@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Cmx.Timesheet.Api")]
+[assembly: AssemblyTitle("Cmx.Timesheet.WebApi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Dartgroup PLC")]
-[assembly: AssemblyProduct("Cmx.Timesheet.Api")]
-[assembly: AssemblyCopyright("Copyright © Dartgroup PLC 2016")]
+[assembly: AssemblyProduct("Cmx.Timesheet.WebApi")]
+[assembly: AssemblyCopyright("Copyright © Dartgroup PLC 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("51fb8b47-2ee4-4efb-af35-d318fc37aaef")]
+[assembly: Guid("9aae785a-35a8-4cd3-a637-f3d4cf24acde")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -29,7 +29,8 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Revision and Build Numbers 
+// You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
+// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

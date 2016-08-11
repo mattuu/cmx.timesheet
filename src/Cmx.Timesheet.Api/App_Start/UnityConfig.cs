@@ -22,7 +22,7 @@ namespace Cmx.Timesheet.Api
 
         private static void RegisterDataStores(IUnityContainer container)
         {
-            //container.RegisterType<ITimesheetDataStore, TimesheetDataDataStoreMock>();
+            container.RegisterType<IWorkDayDataStore, DocumentDbWorkDayDataStore>();
             container.RegisterType<ITimesheetDataStore, DocumentDbTimesheetDataStore>();
         }
     }

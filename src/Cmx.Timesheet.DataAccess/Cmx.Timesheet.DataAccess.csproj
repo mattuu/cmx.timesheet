@@ -51,10 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocumentDbTimesheetConfigDataStore.cs" />
+    <Compile Include="DocumentDbWorkDayDataStore.cs" />
     <Compile Include="ITimesheetConfigDataStore.cs" />
     <Compile Include="ITimesheetDataStore.cs" />
+    <Compile Include="IWorkDayDataStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AzureTimesheetDataStore.cs" />
+    <Compile Include="DocumentDbTimesheetDataStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cmx.Timesheet.DomainModel\Cmx.Timesheet.DomainModel.csproj">

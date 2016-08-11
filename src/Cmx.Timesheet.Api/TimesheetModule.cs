@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.DomainModel;
+using Cmx.Timesheet.Model;
 using Cmx.Timesheet.Services;
 using Nancy;
 
@@ -10,22 +12,22 @@ namespace Cmx.Timesheet.Api
 {
     public sealed class TimesheetModule : NancyModule
     {
-        private readonly ITimesheetDataStore _timesheetDataStore;
+        private readonly ITimesheetProvider _timesheetProvider;
         private readonly ITimesheetWorkflowService _timesheetWorkflowService;
 
-        public TimesheetModule(ITimesheetDataStore timesheetDataStore, ITimesheetWorkflowService timesheetWorkflowService)
+        public TimesheetModule(ITimesheetProvider timesheetProvider, ITimesheetWorkflowService timesheetWorkflowService)
             : base("/api/timesheet")
         {
-            if (timesheetDataStore == null) throw new ArgumentNullException("timesheetDataStore");
+            if (timesheetProvider == null) throw new ArgumentNullException(nameof(timesheetProvider));
             if (timesheetWorkflowService == null) throw new ArgumentNullException("timesheetWorkflowService");
-            _timesheetDataStore = timesheetDataStore;
+            _timesheetProvider = timesheetProvider;
             _timesheetWorkflowService = timesheetWorkflowService;
 
-            Get("", async _ => await _timesheetDataStore.GetTimesheets());
+            Get("", async _ => await _timesheetProvider.GetTimesheetListItems());
 
-            Get<TimesheetModel>("/{id}", async parameters => await _timesheetDataStore.GetTimesheetById(parameters.id));
+            Get<TimesheetDetailsItem>("/{id}", async parameters => await timesheetProvider.GetTimesheetDetailsById(parameters.id));
 
-            Post<TimesheetModel>("/{id}", async timesheetModel => await _timesheetDataStore.CreateTimesheet(timesheetModel));
+            //Post<TimesheetCreateItem>("/{id}", async timesheetModel => await _timesheetDataStore.CreateTimesheet(timesheetModel));
 
             Put("/{id}/submit", async timesheetId =>
             {

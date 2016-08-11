@@ -147,6 +147,10 @@
       <Project>{AC28BF08-2151-4F46-BDBC-43D123CB9160}</Project>
       <Name>Cmx.Timesheet.DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cmx.Timesheet.Model\Cmx.Timesheet.Model.csproj">
+      <Project>{882E539B-2C19-4426-A22E-052BE60B69DC}</Project>
+      <Name>Cmx.Timesheet.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cmx.Timesheet.Services\Cmx.Timesheet.Services.csproj">
       <Project>{108A749A-3949-4D8A-AA75-C327B1929A60}</Project>
       <Name>Cmx.Timesheet.Services</Name>

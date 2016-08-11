@@ -69,7 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Cmx.Timesheet.DataAccess\Cmx.Timesheet.DataAccess.csproj">
-      <Project>{78506DD1-2EA8-48B5-9561-9A19E7EAD979}</Project>
+      <Project>{78506dd1-2ea8-48b5-9561-9a19e7ead979}</Project>
       <Name>Cmx.Timesheet.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Cmx.Timesheet.DomainModel\Cmx.Timesheet.DomainModel.csproj">

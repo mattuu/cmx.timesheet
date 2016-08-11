@@ -33,7 +33,7 @@ namespace Cmx.Timesheet.Services
             throw new System.NotImplementedException();
         }
 
-        public void DeleteTimesheet(int timesheetId)
+        public Task<bool> DeleteTimesheet(Guid timesheetId)
         {
             throw new System.NotImplementedException();
         }

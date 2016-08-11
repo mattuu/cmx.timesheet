@@ -119,9 +119,22 @@ namespace Cmx.Timesheet.DataAccess
             });
         }
 
-        public void DeleteTimesheet(int timesheetId)
+        public Task<bool> DeleteTimesheet(Guid timesheetId)
         {
-            throw new NotImplementedException();
+            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy);
+
+            var uri = UriFactory.CreateDocumentUri(DatabaseName, CollectionName, $"{timesheetId}");
+            var task = _client.DeleteDocumentAsync(uri);
+
+            return Task.Factory.FromAsync(task, result =>
+            {
+                if (result.IsCompleted)
+                {
+                    var t = result as Task<ResourceResponse<Document>>;
+                    return t != null;
+                }
+                return false;
+            });
         }
     }
 }

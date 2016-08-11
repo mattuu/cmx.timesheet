@@ -17,6 +17,6 @@ namespace Cmx.Timesheet.DataAccess
 
         Task<TimesheetModel> CreateTimesheet(TimesheetModel timesheetModel);
 
-        void DeleteTimesheet(int timesheetId);
+        Task<bool> DeleteTimesheet(Guid timesheetId);
     }
 }

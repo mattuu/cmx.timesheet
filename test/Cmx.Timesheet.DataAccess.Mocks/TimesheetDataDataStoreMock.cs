@@ -36,7 +36,7 @@ namespace Cmx.Timesheet.DataAccess.Mocks
                                            .Create());
         }
 
-        public void DeleteTimesheet(int timesheetId)
+        public Task<bool> DeleteTimesheet(Guid timesheetId)
         {
             throw new NotImplementedException();
         }

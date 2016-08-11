@@ -4,6 +4,8 @@ namespace Cmx.Timesheet.DomainModel.Configuration
 {
     public class TimesheetConfigModel
     {
+        public Guid? Id { get; set; }
+
         public TimesheetConfigModel()
         {
             ApplicableDays = new TimesheetApplicableWeekDays();

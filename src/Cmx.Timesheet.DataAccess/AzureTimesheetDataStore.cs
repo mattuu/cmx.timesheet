@@ -14,12 +14,7 @@ namespace Cmx.Timesheet.DataAccess
         private static readonly string EndpointUrl = ConfigurationManager.AppSettings["EndPointUrl"];
         private static readonly string AuthorizationKey = ConfigurationManager.AppSettings["AuthorizationKey"];
         private static readonly string DatabaseName = ConfigurationManager.AppSettings["DatabaseId"];
-        private static readonly string CollectionName = ConfigurationManager.AppSettings["CollectionId"];
-
-        private static readonly ConnectionPolicy ConnectionPolicy = new ConnectionPolicy
-        {
-            UserAgentSuffix = " samples-net/3"
-        };
+        private static readonly string CollectionName = "Timesheets";
 
         private readonly Uri _documentCollectionOrDatabaseUri;
         private DocumentClient _client;
@@ -45,7 +40,7 @@ namespace Cmx.Timesheet.DataAccess
 
         public Task<TimesheetModel> GetTimesheetById(Guid timesheetId)
         {
-            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy);
+            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey);
 
             var uri = UriFactory.CreateDocumentUri(DatabaseName, CollectionName, $"{timesheetId}");
             var task = _client.ReadDocumentAsync(uri);
@@ -75,7 +70,7 @@ namespace Cmx.Timesheet.DataAccess
 
         public Task<bool> UpdateTimesheetStatus(TimesheetModel model)
         {
-            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy);
+            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey);
 
             var uri = UriFactory.CreateDocumentCollectionUri(DatabaseName, CollectionName);
             var task = _client.UpsertDocumentAsync(uri, model);
@@ -93,7 +88,7 @@ namespace Cmx.Timesheet.DataAccess
 
         public Task<TimesheetModel> CreateTimesheet(TimesheetModel timesheetCreateModel)
         {
-            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy);
+            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey);
             var uri = UriFactory.CreateDocumentCollectionUri(DatabaseName, CollectionName);
 
             var task = _client.CreateDocumentAsync(uri, timesheetCreateModel);
@@ -121,7 +116,7 @@ namespace Cmx.Timesheet.DataAccess
 
         public Task<bool> DeleteTimesheet(Guid timesheetId)
         {
-            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy);
+            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey);
 
             var uri = UriFactory.CreateDocumentUri(DatabaseName, CollectionName, $"{timesheetId}");
             var task = _client.DeleteDocumentAsync(uri);

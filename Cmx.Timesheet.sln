@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4F794B32-554C-4217-AAA2-BA1A492604B5}"
 EndProject
@@ -28,13 +28,22 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementation", "Implementation", "{81DE36FF-07D7-4C38-AED5-C1C1FBFD60A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Services.Tests", "test\Cmx.Timesheet.Services.Tests\Cmx.Timesheet.Services.Tests.csproj", "{68BF9BD4-AA07-40E9-864B-6ABE53C551BA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{882E539B-2C19-4426-A22E-052BE60B69DC} = {882E539B-2C19-4426-A22E-052BE60B69DC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Api.Tests", "test\Cmx.Timesheet.Api.Tests\Cmx.Timesheet.Api.Tests.csproj", "{2BB031B3-086C-475F-BF1D-4F74F00745B9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{51FB8B47-2EE4-4EFB-AF35-D318FC37AAEF} = {51FB8B47-2EE4-4EFB-AF35-D318FC37AAEF}
+		{108A749A-3949-4D8A-AA75-C327B1929A60} = {108A749A-3949-4D8A-AA75-C327B1929A60}
+		{882E539B-2C19-4426-A22E-052BE60B69DC} = {882E539B-2C19-4426-A22E-052BE60B69DC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.DomainModel", "src\Cmx.Timesheet.DomainModel\Cmx.Timesheet.DomainModel.csproj", "{AC28BF08-2151-4F46-BDBC-43D123CB9160}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Services", "src\Cmx.Timesheet.Services\Cmx.Timesheet.Services.csproj", "{108A749A-3949-4D8A-AA75-C327B1929A60}"
 	ProjectSection(ProjectDependencies) = postProject
+		{882E539B-2C19-4426-A22E-052BE60B69DC} = {882E539B-2C19-4426-A22E-052BE60B69DC}
 		{78506DD1-2EA8-48B5-9561-9A19E7EAD979} = {78506DD1-2EA8-48B5-9561-9A19E7EAD979}
 	EndProjectSection
 EndProject
@@ -64,13 +73,23 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.DataAccess", "src\Cmx.Timesheet.DataAccess\Cmx.Timesheet.DataAccess.csproj", "{78506DD1-2EA8-48B5-9561-9A19E7EAD979}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AC28BF08-2151-4F46-BDBC-43D123CB9160} = {AC28BF08-2151-4F46-BDBC-43D123CB9160}
+		{882E539B-2C19-4426-A22E-052BE60B69DC} = {882E539B-2C19-4426-A22E-052BE60B69DC}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Api", "src\Cmx.Timesheet.Api\Cmx.Timesheet.Api.csproj", "{51FB8B47-2EE4-4EFB-AF35-D318FC37AAEF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F51BAA67-BE26-45F7-8215-D40551679F66} = {F51BAA67-BE26-45F7-8215-D40551679F66}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.DataAccess.Mocks", "test\Cmx.Timesheet.DataAccess.Mocks\Cmx.Timesheet.DataAccess.Mocks.csproj", "{F51BAA67-BE26-45F7-8215-D40551679F66}"
+	ProjectSection(ProjectDependencies) = postProject
+		{882E539B-2C19-4426-A22E-052BE60B69DC} = {882E539B-2C19-4426-A22E-052BE60B69DC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Azure.Console", "src\Cmx.Timesheet.Azure.Console\Cmx.Timesheet.Azure.Console.csproj", "{CA06BDD2-4C37-4E88-AA41-B5B69BA9B945}"
+	ProjectSection(ProjectDependencies) = postProject
+		{882E539B-2C19-4426-A22E-052BE60B69DC} = {882E539B-2C19-4426-A22E-052BE60B69DC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmx.Timesheet.Model", "src\Cmx.Timesheet.Model\Cmx.Timesheet.Model.csproj", "{882E539B-2C19-4426-A22E-052BE60B69DC}"
 EndProject

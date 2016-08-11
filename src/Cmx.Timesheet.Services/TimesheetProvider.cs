@@ -55,5 +55,65 @@ namespace Cmx.Timesheet.Services
                 return null;
             });
         }
+
+        public Task<TimesheetDetailsItem> CreateTimesheet(TimesheetCreateItem timesheetCreateItem)
+        {
+            var timesheetModel = new TimesheetModel
+            {
+                CreatedBy = "USER",
+                CreatedOn = DateTime.Now,
+                Status = TimesheetStatus.New,
+                StartDate = timesheetCreateItem.StartDate,
+                EndDate = timesheetCreateItem.EndDate
+            };
+            var task = _timesheetDataStore.CreateTimesheet(timesheetModel);
+            return Task.Factory.FromAsync(task, result =>
+            {
+                var originalTask = result as Task<TimesheetModel>;
+                var model = originalTask?.Result;
+                if (model != null)
+                {
+                    return new TimesheetDetailsItem
+                    {
+                        TimesheetId = model.Id ?? default(Guid),
+                        StartDate = model.StartDate,
+                        EndDate = model.EndDate
+                    };
+                }
+                return null;
+            });
+        }
+
+        public Task<TimesheetDetailsItem> UpdateTimesheet(Guid timesheetId, TimesheetUpdateItem timesheetUpdateItem)
+        {
+            throw new NotImplementedException();
+
+            //_timesheetDataStore.GetTimesheetById(timesheetId).ContinueWith(t =>
+            //{
+            //    //return Task.FromResult(new TimesheetDetailsItem());
+
+            //    //var timesheetModel = t.Result;
+            //    //timesheetModel.EndDate = timesheetUpdateItem.EndDate;
+            //    //timesheetModel.StartDate = timesheetUpdateItem.StartDate;
+
+            //    //var task = _timesheetDataStore.UpdateTimesheet(timesheetModel);
+
+            //    //return Task.Factory.FromAsync(task, result =>
+            //    //{
+            //    //    var originalTask = result as Task<TimesheetModel>;
+            //    //    var model = originalTask?.Result;
+            //    //    if (model != null)
+            //    //    {
+            //    //        return new TimesheetDetailsItem
+            //    //        {
+            //    //            TimesheetId = model.Id ?? default(Guid),
+            //    //            StartDate = model.StartDate,
+            //    //            EndDate = model.EndDate
+            //    //        };
+            //    //    }
+            //    //    return null;
+            //    //});
+            //});
+        }
     }
 }

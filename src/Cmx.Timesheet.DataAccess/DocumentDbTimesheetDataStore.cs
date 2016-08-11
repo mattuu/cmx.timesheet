@@ -62,7 +62,7 @@ namespace Cmx.Timesheet.DataAccess
             });
         }
 
-        public Task<bool> UpdateTimesheetStatus(TimesheetModel model)
+        public Task<bool> UpdateTimesheet(TimesheetModel model)
         {
             _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey);
 

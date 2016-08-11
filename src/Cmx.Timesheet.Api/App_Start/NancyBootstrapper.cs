@@ -1,7 +1,12 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System.IO;
+using Microsoft.Practices.Unity;
 using Nancy;
+using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Unity;
 using Nancy.Configuration;
+using Nancy.Serialization.JsonNet;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Cmx.Timesheet.Api
 {
@@ -25,6 +30,24 @@ namespace Cmx.Timesheet.Api
         protected override void ConfigureRequestContainer(IUnityContainer container, NancyContext context)
         {
             UnityConfig.RegisterComponents(container);
+        }
+
+        protected override void ConfigureApplicationContainer(IUnityContainer existingContainer)
+        {
+            base.ConfigureApplicationContainer(existingContainer);
+
+            existingContainer.RegisterType<JsonSerializer, CustomJsonSerializer>();
+        }
+    }
+
+    public sealed class CustomJsonSerializer : JsonSerializer
+    {
+        public CustomJsonSerializer()
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver();
+            Formatting = Formatting.Indented;
+            TypeNameHandling = TypeNameHandling.Objects;
+
         }
     }
 }

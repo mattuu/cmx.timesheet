@@ -13,7 +13,7 @@ namespace Cmx.Timesheet.DataAccess
 
         Task<TimesheetModel> GetTimesheetById(Guid timesheetId);
 
-        Task<bool> UpdateTimesheetStatus(TimesheetModel model);
+        Task<bool> UpdateTimesheet(TimesheetModel model);
 
         Task<TimesheetModel> CreateTimesheet(TimesheetModel timesheetModel);
 

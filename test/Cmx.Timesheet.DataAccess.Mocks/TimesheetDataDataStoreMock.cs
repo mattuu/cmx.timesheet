@@ -46,7 +46,7 @@ namespace Cmx.Timesheet.DataAccess.Mocks
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateTimesheetStatus(TimesheetModel model)
+        public Task<bool> UpdateTimesheet(TimesheetModel model)
         {
             throw new NotImplementedException();
         }

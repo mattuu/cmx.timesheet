@@ -80,7 +80,7 @@ namespace Cmx.Timesheet.Azure.Console
             updateModel.Status = TimesheetStatus.Submitted;
             updateModel.TotalHours = 120.5M;
 
-            var isUpdated = dataStore.UpdateTimesheetStatus(updateModel).Result;
+            var isUpdated = dataStore.UpdateTimesheet(updateModel).Result;
             System.Console.WriteLine("UPDATED:");
             System.Console.WriteLine(isUpdated);
 

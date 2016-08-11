@@ -38,7 +38,7 @@ namespace Cmx.Timesheet.Services
         {
             var timesheetModel = FindTimesheet(timesheetId);
             timesheetModel.Status = status;
-            _timesheetDataStore.UpdateTimesheetStatus(timesheetModel);
+            _timesheetDataStore.UpdateTimesheet(timesheetModel);
         }
 
         private TimesheetModel FindTimesheet(int timesheetId)

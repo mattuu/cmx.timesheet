@@ -28,7 +28,7 @@ namespace Cmx.Timesheet.Services.Tests
         {
             _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<Guid>())).Returns<Guid>(id => Task.FromResult(new TimesheetModel { Id = id }));
 
-            _timesheetStoreMock.Setup(s => s.UpdateTimesheetStatus(It.Is<TimesheetModel>(tm => tm.Status == TimesheetStatus.Submitted))).Verifiable();
+            _timesheetStoreMock.Setup(s => s.UpdateTimesheet(It.Is<TimesheetModel>(tm => tm.Status == TimesheetStatus.Submitted))).Verifiable();
 
             _service.SubmitTimesheet(_fixture.Create<int>());
 
@@ -40,7 +40,7 @@ namespace Cmx.Timesheet.Services.Tests
         {
             _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<Guid>())).Returns<Guid>(id => Task.FromResult(new TimesheetModel {Id = id}));
 
-            _timesheetStoreMock.Setup(s => s.UpdateTimesheetStatus(It.Is<TimesheetModel>(tm => tm.Status == TimesheetStatus.Approved))).Verifiable();
+            _timesheetStoreMock.Setup(s => s.UpdateTimesheet(It.Is<TimesheetModel>(tm => tm.Status == TimesheetStatus.Approved))).Verifiable();
 
             _service.ApproveTimesheet(_fixture.Create<int>());
         
@@ -52,7 +52,7 @@ namespace Cmx.Timesheet.Services.Tests
         {
             _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<Guid>())).Returns<Guid>(id => Task.FromResult(new TimesheetModel { Id = id }));
 
-            _timesheetStoreMock.Setup(s => s.UpdateTimesheetStatus(It.Is<TimesheetModel>(tm => tm.Status == TimesheetStatus.Rejected))).Verifiable();
+            _timesheetStoreMock.Setup(s => s.UpdateTimesheet(It.Is<TimesheetModel>(tm => tm.Status == TimesheetStatus.Rejected))).Verifiable();
 
             _service.RejectTimesheet(_fixture.Create<int>());
 

@@ -11,7 +11,6 @@ namespace Cmx.Timesheet.DataAccess
 {
     public class AzureTimesheetDataStore : ITimesheetDataStore
     {
-        private DocumentClient _client;
         private static readonly string EndpointUrl = ConfigurationManager.AppSettings["EndPointUrl"];
         private static readonly string AuthorizationKey = ConfigurationManager.AppSettings["AuthorizationKey"];
         private static readonly string DatabaseName = ConfigurationManager.AppSettings["DatabaseId"];
@@ -23,6 +22,7 @@ namespace Cmx.Timesheet.DataAccess
         };
 
         private readonly Uri _documentCollectionOrDatabaseUri;
+        private DocumentClient _client;
 
         public AzureTimesheetDataStore()
         {
@@ -55,36 +55,50 @@ namespace Cmx.Timesheet.DataAccess
                 if (result.IsCompleted)
                 {
                     var t = result as Task<ResourceResponse<Document>>;
-                    var doc =  t?.Result?.Resource;
+                    var doc = t?.Result?.Resource;
                     if (doc != null)
                     {
                         return new TimesheetModel
                         {
                             Id = Guid.Parse(doc.Id),
-                            CreatedOn = doc.GetPropertyValue<DateTime>("CreatedOn"),
-                            CreatedBy = doc.GetPropertyValue<string>("CreatedBy"),
-                            Status = doc.GetPropertyValue<TimesheetStatus>("Status")
+                            StartDate = doc.GetPropertyValue<DateTime>("startDate"),
+                            EndDate = doc.GetPropertyValue<DateTime>("endDate"),
+                            CreatedOn = doc.GetPropertyValue<DateTime>("createdOn"),
+                            CreatedBy = doc.GetPropertyValue<string>("createdBy"),
+                            Status = doc.GetPropertyValue<TimesheetStatus>("status")
                         };
                     }
-
                 }
                 return null;
             });
         }
 
-        public TimesheetModel UpdateTimesheet(TimesheetUpdateModel timesheetUpdateModel)
+        public Task<bool> UpdateTimesheetStatus(TimesheetModel model)
         {
-            throw new NotImplementedException();
+            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy);
+
+            var uri = UriFactory.CreateDocumentCollectionUri(DatabaseName, CollectionName);
+            var task = _client.UpsertDocumentAsync(uri, model);
+
+            return Task.Factory.FromAsync(task, result =>
+            {
+                if (result.IsCompleted)
+                {
+                    var t = result as Task<ResourceResponse<Document>>;
+                    return t != null;
+                }
+                return false;
+            });
         }
 
-        public Task<TimesheetModel> CreateTimesheet(TimesheetCreateModel timesheetCreateModel)
+        public Task<TimesheetModel> CreateTimesheet(TimesheetModel timesheetCreateModel)
         {
             _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy);
             var uri = UriFactory.CreateDocumentCollectionUri(DatabaseName, CollectionName);
 
             var task = _client.CreateDocumentAsync(uri, timesheetCreateModel);
 
-            return Task.Factory.FromAsync(task, result =>
+            return Task.Factory.FromAsync<TimesheetModel>(task, result =>
             {
                 if (result.IsCompleted)
                 {
@@ -92,15 +106,14 @@ namespace Cmx.Timesheet.DataAccess
                     var doc = t?.Result?.Resource;
                     if (doc != null)
                     {
-                        return new TimesheetModel()
+                        return new TimesheetModel
                         {
                             Id = Guid.Parse(doc.Id),
-                            CreatedOn = doc.GetPropertyValue<DateTime>("CreatedOn"),
-                            CreatedBy = doc.GetPropertyValue<string>("CreatedBy"),
-                            Status = doc.GetPropertyValue<TimesheetStatus>("Status")
+                            CreatedOn = doc.GetPropertyValue<DateTime>("createdOn"),
+                            CreatedBy = doc.GetPropertyValue<string>("createdBy"),
+                            Status = doc.GetPropertyValue<TimesheetStatus>("status")
                         };
                     }
-
                 }
                 return null;
             });

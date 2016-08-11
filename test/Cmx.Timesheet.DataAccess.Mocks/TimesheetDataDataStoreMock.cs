@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Cmx.Timesheet.DomainModel;
 using Cmx.Timesheet.Services;
@@ -40,12 +41,12 @@ namespace Cmx.Timesheet.DataAccess.Mocks
             throw new NotImplementedException();
         }
 
-        public Task<TimesheetModel> CreateTimesheet(TimesheetCreateModel timesheetCreateModel)
+        public Task<TimesheetModel> CreateTimesheet(TimesheetModel timesheetCreateModel)
         {
             throw new NotImplementedException();
         }
 
-        public TimesheetModel UpdateTimesheet(TimesheetUpdateModel timesheetUpdateModel)
+        public Task<bool> UpdateTimesheetStatus(TimesheetModel model)
         {
             throw new NotImplementedException();
         }

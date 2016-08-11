@@ -23,12 +23,12 @@ namespace Cmx.Timesheet.Services
             throw new System.NotImplementedException();
         }
 
-        public TimesheetModel UpdateTimesheet(TimesheetUpdateModel timesheetModel)
+        public Task<bool> UpdateTimesheetStatus(TimesheetModel model)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<TimesheetModel> CreateTimesheet(TimesheetCreateModel timesheetCreateModel)
+        public Task<TimesheetModel> CreateTimesheet(TimesheetModel timesheetCreateModel)
         {
             throw new System.NotImplementedException();
         }

@@ -31,14 +31,14 @@ namespace Cmx.Timesheet.Services
             {
                 if (configuration.ApplicableDays.Days.Contains(date.DayOfWeek))
                 {
-                    timesheet.WorkDays.Add(new WorkDayModel
-                    {
-                        Date = date,
-                        StartTime = configuration.DefaultStartTime,
-                        EndTime = configuration.DefaultEndTime,
-                        BreakStartTime = configuration.DefaultBreakStartTime,
-                        BreakEndTime = configuration.DefaultBreakEndTime
-                    });
+                    //timesheet.WorkDays.Add(new WorkDayModel
+                    //{
+                    //    Date = date,
+                    //    StartTime = configuration.DefaultStartTime,
+                    //    EndTime = configuration.DefaultEndTime,
+                    //    BreakStartTime = configuration.DefaultBreakStartTime,
+                    //    BreakEndTime = configuration.DefaultBreakEndTime
+                    //});
                 }
             }
 

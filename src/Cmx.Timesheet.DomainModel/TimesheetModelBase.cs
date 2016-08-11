@@ -5,7 +5,7 @@ namespace Cmx.Timesheet.DomainModel
 {
     public abstract class TimesheetModelBase
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public DateTime StartDate { get; set; }
 

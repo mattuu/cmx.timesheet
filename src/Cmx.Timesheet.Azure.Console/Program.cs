@@ -35,8 +35,31 @@ namespace Cmx.Timesheet.Azure.Console
             //    System.Console.WriteLine(timesheet.Id);
             //}
 
-            var ts = dataStore.GetTimesheetById(1).Result;
+            var model = new TimesheetCreateModel
+            {
+                CreatedBy = "VS",
+                CreatedOn = DateTime.Now,
+                StartDate = new DateTime(2016, 8, 8),
+                EndDate = new DateTime(2016, 8, 12),
+                WorkDays = new[]
+                {
+                    new WorkDayModel()
+                    {
+                        Date = new DateTime(2016, 8, 8),
+                        StartTime = new TimeSpan(7, 30, 0),
+                        EndTime = new TimeSpan(16, 30, 0)
+                    }
+                }
+            };
+
+            var newModel = dataStore.CreateTimesheet(model).Result;
+
+            var ts = dataStore.GetTimesheetById(newModel.Id).Result;
+
             System.Console.WriteLine(ts.Id);
+            System.Console.WriteLine(ts.CreatedOn);
+            System.Console.WriteLine(ts.CreatedBy);
+            System.Console.WriteLine(ts.Status);
 
 
             System.Console.WriteLine("FINISHING...");

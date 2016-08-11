@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.DomainModel;
@@ -20,23 +21,11 @@ namespace Cmx.Timesheet.Api
             _timesheetDataStore = timesheetDataStore;
             _timesheetWorkflowService = timesheetWorkflowService;
 
-            Get("", async _ =>
-            {
-                var data = _timesheetDataStore.GetTimesheets();
-                return await data;
-            });
+            Get("", async _ => await _timesheetDataStore.GetTimesheets());
 
-            Get<TimesheetModel>("/{id}", async parameters =>
-            {
-                var data = _timesheetDataStore.GetTimesheetById(parameters.id);
-                return await data;
-            });
+            Get<TimesheetModel>("/{id}", async parameters => await _timesheetDataStore.GetTimesheetById(parameters.id));
 
-            Post("/{id}", async timesheetModel =>
-            {
-                _timesheetDataStore.InsertTimesheet(timesheetModel);
-                return await Task.FromResult(HttpStatusCode.Created);
-            });
+            Post<TimesheetModel>("/{id}", async timesheetModel => await _timesheetDataStore.CreateTimesheet(timesheetModel));
 
             Put("/{id}/submit", async timesheetId =>
             {

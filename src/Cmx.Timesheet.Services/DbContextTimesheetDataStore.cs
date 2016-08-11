@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.DomainModel;
@@ -17,7 +18,7 @@ namespace Cmx.Timesheet.Services
             throw new System.NotImplementedException();
         }
 
-        public Task<TimesheetModel> GetTimesheetById(int timesheetId)
+        public Task<TimesheetModel> GetTimesheetById(Guid timesheetId)
         {
             throw new System.NotImplementedException();
         }
@@ -27,7 +28,7 @@ namespace Cmx.Timesheet.Services
             throw new System.NotImplementedException();
         }
 
-        public TimesheetModel InsertTimesheet(TimesheetModel timesheetModel)
+        public Task<TimesheetModel> CreateTimesheet(TimesheetCreateModel timesheetCreateModel)
         {
             throw new System.NotImplementedException();
         }

@@ -28,7 +28,7 @@ namespace Cmx.Timesheet.DataAccess.Mocks
             throw new NotImplementedException();
         }
 
-        public Task<TimesheetModel> GetTimesheetById(int timesheetId)
+        public Task<TimesheetModel> GetTimesheetById(Guid timesheetId)
         {
             return Task.FromResult(_fixture.Build<TimesheetModel>()
                                            .With(t => t.Id, timesheetId)
@@ -40,7 +40,7 @@ namespace Cmx.Timesheet.DataAccess.Mocks
             throw new NotImplementedException();
         }
 
-        public TimesheetModel InsertTimesheet(TimesheetModel timesheetModel)
+        public Task<TimesheetModel> CreateTimesheet(TimesheetCreateModel timesheetCreateModel)
         {
             throw new NotImplementedException();
         }

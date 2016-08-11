@@ -47,6 +47,7 @@
     <Compile Include="Configuration\TimesheetApplicableWeekDays.cs" />
     <Compile Include="Configuration\TimesheetConfigModel.cs" />
     <Compile Include="Configuration\TimesheetFrequency.cs" />
+    <Compile Include="TimesheetCreateModel.cs" />
     <Compile Include="TimesheetModelBase.cs" />
     <Compile Include="TimesheetStatus.cs" />
     <Compile Include="TimesheetUpdateModel.cs" />

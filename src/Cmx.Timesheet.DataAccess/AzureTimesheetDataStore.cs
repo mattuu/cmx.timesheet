@@ -43,26 +43,27 @@ namespace Cmx.Timesheet.DataAccess
             throw new NotImplementedException();
         }
 
-        public Task<TimesheetModel> GetTimesheetById(int timesheetId)
+        public Task<TimesheetModel> GetTimesheetById(Guid timesheetId)
         {
             _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy);
 
             var uri = UriFactory.CreateDocumentUri(DatabaseName, CollectionName, $"{timesheetId}");
             var task = _client.ReadDocumentAsync(uri);
 
-            return Task.Factory.FromAsync<TimesheetModel>(task, result =>
+            return Task.Factory.FromAsync(task, result =>
             {
                 if (result.IsCompleted)
                 {
                     var t = result as Task<ResourceResponse<Document>>;
-                    //t.Result
-                    //return t as TimesheetModel;
                     var doc =  t?.Result?.Resource;
                     if (doc != null)
                     {
-                        return new TimesheetModel()
+                        return new TimesheetModel
                         {
-                            Id = int.Parse(doc.Id)
+                            Id = Guid.Parse(doc.Id),
+                            CreatedOn = doc.GetPropertyValue<DateTime>("CreatedOn"),
+                            CreatedBy = doc.GetPropertyValue<string>("CreatedBy"),
+                            Status = doc.GetPropertyValue<TimesheetStatus>("Status")
                         };
                     }
 
@@ -76,9 +77,33 @@ namespace Cmx.Timesheet.DataAccess
             throw new NotImplementedException();
         }
 
-        public TimesheetModel InsertTimesheet(TimesheetModel timesheetModel)
+        public Task<TimesheetModel> CreateTimesheet(TimesheetCreateModel timesheetCreateModel)
         {
-            throw new NotImplementedException();
+            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy);
+            var uri = UriFactory.CreateDocumentCollectionUri(DatabaseName, CollectionName);
+
+            var task = _client.CreateDocumentAsync(uri, timesheetCreateModel);
+
+            return Task.Factory.FromAsync(task, result =>
+            {
+                if (result.IsCompleted)
+                {
+                    var t = result as Task<ResourceResponse<Document>>;
+                    var doc = t?.Result?.Resource;
+                    if (doc != null)
+                    {
+                        return new TimesheetModel()
+                        {
+                            Id = Guid.Parse(doc.Id),
+                            CreatedOn = doc.GetPropertyValue<DateTime>("CreatedOn"),
+                            CreatedBy = doc.GetPropertyValue<string>("CreatedBy"),
+                            Status = doc.GetPropertyValue<TimesheetStatus>("Status")
+                        };
+                    }
+
+                }
+                return null;
+            });
         }
 
         public void DeleteTimesheet(int timesheetId)

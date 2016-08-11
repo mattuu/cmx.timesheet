@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,11 @@ namespace Cmx.Timesheet.DataAccess
 
         IEnumerable<TimesheetModel> GetTimesheetsByUser(int ownerId);
 
-        Task<TimesheetModel> GetTimesheetById(int timesheetId);
+        Task<TimesheetModel> GetTimesheetById(Guid timesheetId);
 
         TimesheetModel UpdateTimesheet(TimesheetUpdateModel timesheetUpdateModel);
 
-        TimesheetModel InsertTimesheet(TimesheetModel timesheetModel);
+        Task<TimesheetModel> CreateTimesheet(TimesheetCreateModel timesheetCreateModel);
 
         void DeleteTimesheet(int timesheetId);
     }

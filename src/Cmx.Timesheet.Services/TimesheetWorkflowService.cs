@@ -40,7 +40,7 @@ namespace Cmx.Timesheet.Services
 
             _timesheetDataStore.UpdateTimesheet(new TimesheetUpdateModel
             {
-                Id = timesheetId,
+                //Id = timesheetId,
                 StartDate = timesheet.StartDate,
                 EndDate = timesheet.EndDate,
                 WorkDays = timesheet.WorkDays,
@@ -50,7 +50,7 @@ namespace Cmx.Timesheet.Services
 
         private TimesheetModel FindTimesheet(int timesheetId)
         {
-            var timesheet = _timesheetDataStore.GetTimesheetById(timesheetId);
+            var timesheet = _timesheetDataStore.GetTimesheetById(default (Guid));
             if (timesheet == null)
             {
                 throw new NullReferenceException(string.Format("Timesheet not found for id {0}", timesheetId));

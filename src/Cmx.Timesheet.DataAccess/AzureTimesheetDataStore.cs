@@ -11,7 +11,7 @@ namespace Cmx.Timesheet.DataAccess
 {
     public class AzureTimesheetDataStore : ITimesheetDataStore
     {
-        private static DocumentClient _client;
+        private DocumentClient _client;
         private static readonly string EndpointUrl = ConfigurationManager.AppSettings["EndPointUrl"];
         private static readonly string AuthorizationKey = ConfigurationManager.AppSettings["AuthorizationKey"];
         private static readonly string DatabaseName = ConfigurationManager.AppSettings["DatabaseId"];
@@ -31,16 +31,11 @@ namespace Cmx.Timesheet.DataAccess
 
         public Task<IEnumerable<TimesheetModel>> GetTimesheets()
         {
-            using (_client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy))
-            {
-                //CreateNewDatabaseAsync().Wait();
-                //RunCollectionDemo().Wait();
-                //_client.CreateDocumentCollectionAsync()
+            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey);
 
-                var timesheetModels = _client.CreateDocumentQuery<TimesheetModel>(_documentCollectionOrDatabaseUri)
-                                             .AsEnumerable();
-                return Task.FromResult(timesheetModels);
-            }
+            var data = _client.CreateDocumentQuery<TimesheetModel>(_documentCollectionOrDatabaseUri);
+
+            return Task.FromResult(data.AsEnumerable());
         }
 
         public IEnumerable<TimesheetModel> GetTimesheetsByUser(int ownerId)
@@ -50,20 +45,30 @@ namespace Cmx.Timesheet.DataAccess
 
         public Task<TimesheetModel> GetTimesheetById(int timesheetId)
         {
-            using (_client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy))
+            _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey, ConnectionPolicy);
+
+            var uri = UriFactory.CreateDocumentUri(DatabaseName, CollectionName, $"{timesheetId}");
+            var task = _client.ReadDocumentAsync(uri);
+
+            return Task.Factory.FromAsync<TimesheetModel>(task, result =>
             {
-                //CreateNewDatabaseAsync().Wait();
-                //RunCollectionDemo().Wait();
-                //_client.CreateDocumentCollectionAsync()
+                if (result.IsCompleted)
+                {
+                    var t = result as Task<ResourceResponse<Document>>;
+                    //t.Result
+                    //return t as TimesheetModel;
+                    var doc =  t?.Result?.Resource;
+                    if (doc != null)
+                    {
+                        return new TimesheetModel()
+                        {
+                            Id = int.Parse(doc.Id)
+                        };
+                    }
 
-                var uri = UriFactory.CreateDocumentUri(DatabaseName, CollectionName, "${timesheetId}");
-                var task = _client.ReadDocumentAsync(uri);
-
-                var data = task.Result;
-                //var response = task.Result.;
-
-                return Task.FromResult(new TimesheetModel());
-            }
+                }
+                return null;
+            });
         }
 
         public TimesheetModel UpdateTimesheet(TimesheetUpdateModel timesheetUpdateModel)

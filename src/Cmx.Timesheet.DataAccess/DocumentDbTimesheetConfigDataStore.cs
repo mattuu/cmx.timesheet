@@ -13,7 +13,7 @@ namespace Cmx.Timesheet.DataAccess
         private static readonly string EndpointUrl = ConfigurationManager.AppSettings["EndPointUrl"];
         private static readonly string AuthorizationKey = ConfigurationManager.AppSettings["AuthorizationKey"];
         private static readonly string DatabaseName = ConfigurationManager.AppSettings["DatabaseId"];
-        private static readonly string CollectionName = "TimesheetConfgurations";
+        private const string CollectionName = "TimesheetConfgurations";
         private DocumentClient _client;
 
         public Task<IEnumerable<TimesheetConfigModel>> GetTimesheetConfigurations()

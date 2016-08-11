@@ -9,26 +9,20 @@ using Microsoft.Azure.Documents.Client;
 
 namespace Cmx.Timesheet.DataAccess
 {
-    public class AzureTimesheetDataStore : ITimesheetDataStore
+    public class DocumentDbTimesheetDataStore : ITimesheetDataStore
     {
         private static readonly string EndpointUrl = ConfigurationManager.AppSettings["EndPointUrl"];
         private static readonly string AuthorizationKey = ConfigurationManager.AppSettings["AuthorizationKey"];
         private static readonly string DatabaseName = ConfigurationManager.AppSettings["DatabaseId"];
-        private static readonly string CollectionName = "Timesheets";
-
-        private readonly Uri _documentCollectionOrDatabaseUri;
+        private const string CollectionName = "Timesheets";
         private DocumentClient _client;
-
-        public AzureTimesheetDataStore()
-        {
-            _documentCollectionOrDatabaseUri = UriFactory.CreateDocumentCollectionUri(DatabaseName, CollectionName);
-        }
 
         public Task<IEnumerable<TimesheetModel>> GetTimesheets()
         {
             _client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey);
 
-            var data = _client.CreateDocumentQuery<TimesheetModel>(_documentCollectionOrDatabaseUri);
+            var uri = UriFactory.CreateDocumentCollectionUri(DatabaseName, CollectionName);
+            var data = _client.CreateDocumentQuery<TimesheetModel>(uri);
 
             return Task.FromResult(data.AsEnumerable());
         }

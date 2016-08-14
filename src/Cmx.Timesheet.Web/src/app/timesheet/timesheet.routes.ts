@@ -1,7 +1,14 @@
-import { RouterConfig }          from "@angular/router";
+import { RouterConfig } from "@angular/router";
 
-import { TimesheetListComponent }     from "./index";
+import { TimesheetListComponent, TimesheetDetailsComponent } from "./index";
 
 export const TIMESHEET_ROUTES: RouterConfig = [
-    { path: "timesheet", component: TimesheetListComponent }
+    {
+        path: "timesheet",
+        component: TimesheetListComponent
+    },
+    {
+        path: "timesheet/:id",
+        component: TimesheetDetailsComponent
+    }
 ];

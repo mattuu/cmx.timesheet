@@ -11,7 +11,7 @@ namespace Cmx.Timesheet.Api
     {
         public override void Configure(INancyEnvironment environment)
         {
-            base.Configure(environment); 
+            base.Configure(environment);   
 
             environment.Tracing(false, true);
         }

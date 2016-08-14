@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 using Nancy;
+using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Unity;
 using Nancy.Configuration;
 using Newtonsoft.Json;
@@ -11,10 +12,11 @@ namespace Cmx.Timesheet.Api
     {
         public override void Configure(INancyEnvironment environment)
         {
-            base.Configure(environment);   
+            base.Configure(environment);
 
             environment.Tracing(false, true);
         }
+
 
         protected override INancyEnvironmentConfigurator GetEnvironmentConfigurator()
         {
@@ -42,6 +44,18 @@ namespace Cmx.Timesheet.Api
 
             existingContainer.RegisterType<JsonSerializer, CustomJsonSerializer>();
         }
+
+        protected override void RequestStartup(IUnityContainer container, IPipelines pipelines, NancyContext context)
+        {
+            base.RequestStartup(container, pipelines, context);
+
+            pipelines.AfterRequest.AddItemToEndOfPipeline(ctx =>
+            {
+                ctx.Response.WithHeader("Access-Control-Allow-Origin", "*")
+                    .WithHeader("Access-Control-Allow-Methods", "POST,GET")
+                    .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
+            });
+        }
     }
 
     public sealed class CustomJsonSerializer : JsonSerializer
@@ -51,7 +65,6 @@ namespace Cmx.Timesheet.Api
             ContractResolver = new CamelCasePropertyNamesContractResolver();
             Formatting = Formatting.Indented;
             TypeNameHandling = TypeNameHandling.Objects;
-
         }
     }
 }

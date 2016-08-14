@@ -1,2 +1,2 @@
 # cmx.timesheet
-Timesheet
+Timesheet application

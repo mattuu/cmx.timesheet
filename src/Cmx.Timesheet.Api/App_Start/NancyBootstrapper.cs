@@ -13,7 +13,7 @@ namespace Cmx.Timesheet.Api
         {
             base.Configure(environment);
 
-            environment.Tracing(enabled: false, displayErrorTraces: true);
+            environment.Tracing(false, true);
         }
 
         protected override INancyEnvironmentConfigurator GetEnvironmentConfigurator()

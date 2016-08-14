@@ -1,10 +1,7 @@
-﻿using System.IO;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Unity;
 using Nancy;
-using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Unity;
 using Nancy.Configuration;
-using Nancy.Serialization.JsonNet;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -12,6 +9,13 @@ namespace Cmx.Timesheet.Api
 {
     public class NancyBootstrapper : UnityNancyBootstrapper
     {
+        public override void Configure(INancyEnvironment environment)
+        {
+            base.Configure(environment);
+
+            environment.Tracing(enabled: false, displayErrorTraces: true);
+        }
+
         protected override INancyEnvironmentConfigurator GetEnvironmentConfigurator()
         {
             return ApplicationContainer.Resolve<INancyEnvironmentConfigurator>();

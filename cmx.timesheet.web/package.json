@@ -1,6 +1,21 @@
 {
+  "name": "cmx-timesheets",
+  "version": "0.0.1",
+  "scripts": {
+    "preinstall": "npm install typings",
+    "postinstall": "typings install && node post-install",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "tslint": "tslint ./src/**/*.ts",
+    "typings": "typings",
+    "publish": "node build-publish",
+    "test": "karma start karma.config.js --single-run",
+    "test:w": "karma start karma.config.js",
+    "build:w": "tsc && concurrently \"npm run tsc:w\" \"npm run test:w\""
+  },
   "dependencies": {
     "node-http-server": "^6.2.1",
+    "rxjs": "^5.0.0-rc.2",
     "systemjs": "^0.19.40",
     "typings": "^1.5.0"
   }

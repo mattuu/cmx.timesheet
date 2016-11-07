@@ -5,8 +5,9 @@
 (function (global) {
     var map = {
         // "app": "src",
-        "api": "api"
+        "@api": "api"
         "rxjs": "node_modules/rxjs",
+        "nodeHttpServer": "node_modules/nodeHttpServer",
         "@angular": "node_modules/@angular",
         // "jquery": "node_modules/jquery/dist/jquery.js",
         // "bootstrap": "node_modules/bootstrap/dist/js/bootstrap.js",

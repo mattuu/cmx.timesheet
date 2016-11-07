@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "preinstall": "npm install typings",
-    "postinstall": "typings install && node post-install",
+    "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "tslint": "tslint ./src/**/*.ts",

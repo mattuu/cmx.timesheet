@@ -115,6 +115,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Cmx.Timesheet.DataAccess\Cmx.Timesheet.DataAccess.csproj">
+      <Project>{78506DD1-2EA8-48B5-9561-9A19E7EAD979}</Project>
+      <Name>Cmx.Timesheet.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Cmx.Timesheet.DomainModel\Cmx.Timesheet.DomainModel.csproj">
       <Project>{AC28BF08-2151-4F46-BDBC-43D123CB9160}</Project>
       <Name>Cmx.Timesheet.DomainModel</Name>

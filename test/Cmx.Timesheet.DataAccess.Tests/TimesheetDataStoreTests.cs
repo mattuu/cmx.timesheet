@@ -29,7 +29,6 @@ namespace Cmx.Timesheet.DataAccess.Tests
             mongoDatabaseMock.Verify(m => m.GetCollection<TimesheetModel>(It.Is<string>(s => s == TimesheetDataStore.TimesheetCollectionName), It.Is<MongoCollectionSettings>(s => s == null)), Times.Once());
         }
 
-
         [Theory(Skip = "TODO: come up with good way of testing this.."), AutoMoqData]
         public async Task GetTimesheets_ShouldReturnCorrectResult([Frozen] Mock<IMongoDatabase> mongoDatabaseMock,
                                                                   [Frozen] Mock<IMongoCollection<TimesheetModel>> mongoCollectionMock,
@@ -47,6 +46,16 @@ namespace Cmx.Timesheet.DataAccess.Tests
             mongoDatabaseMock.Verify(m => m.GetCollection<TimesheetModel>(It.Is<string>(s => s == TimesheetDataStore.TimesheetCollectionName), It.Is<MongoCollectionSettings>(s => s == null)), Times.Once());
         }
 
+
+        [Theory, AutoMoqData]
+        public async Task GetTimesheetById_ShouldCall_GetCollection_On_MongoDatabase_WithCorrectArgs([Frozen] Mock<IMongoDatabase> mongoDatabaseMock, TimesheetDataStore sut)
+        {
+            // act..
+            await sut.GetTimesheets();
+
+            // assert..
+            mongoDatabaseMock.Verify(m => m.GetCollection<TimesheetModel>(It.Is<string>(s => s == TimesheetDataStore.TimesheetCollectionName), It.Is<MongoCollectionSettings>(s => s == null)), Times.Once());
+        }
 
         [Theory, AutoMoqData]
         public void GetTimesheets_ShouldReturnCorrectResult()

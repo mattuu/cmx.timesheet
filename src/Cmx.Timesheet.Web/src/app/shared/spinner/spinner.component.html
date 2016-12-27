@@ -1,7 +1,0 @@
-<div class="spinner text-center" *ngIf="isBusy">
-    <img [src]="spinnerImage" [height]="spinnerSize" [width]="spinnerSize" class="j2bi-spinner-image"/>
-    <span *ngIf="message" class="j2bi-spinner-message">{{message}}</span>
-</div>
-<div class="content" *ngIf="!isBusy">
-    <ng-content ></ng-content>
-</div>

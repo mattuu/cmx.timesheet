@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+	height: 100%;
+}
+
+div.busy-indicator {
+	background: url('/assets/busy.svg') no-repeat center;
+	width: 100%;
+	height: 100%;
+}

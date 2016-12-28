@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { TimesheetListComponentComponent } from './timesheet-list-component.component';
+import { TimesheetListComponent } from './timesheet-list.component';
 
-describe('TimesheetListComponentComponent', () => {
-  let component: TimesheetListComponentComponent;
-  let fixture: ComponentFixture<TimesheetListComponentComponent>;
+describe('TimesheetListComponent', () => {
+  let component: TimesheetListComponent;
+  let fixture: ComponentFixture<TimesheetListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimesheetListComponentComponent ]
+      declarations: [ TimesheetListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TimesheetListComponentComponent);
+    fixture = TestBed.createComponent(TimesheetListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

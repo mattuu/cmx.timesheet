@@ -4,20 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { TopNavModule } from './top-nav/top-nav.module';
+import { TimesheetModule } from './timesheet/timesheet.module';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { TimesheetListComponentComponent } from './timesheet-list-component/timesheet-list-component.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TimesheetListComponentComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    TopNavModule
+    TopNavModule,
+    TimesheetModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

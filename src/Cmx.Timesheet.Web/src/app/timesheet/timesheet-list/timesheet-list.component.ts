@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from 'rxjs/Observable'; 
+
+import { TimesheetService } from '../timesheet.service';
+import { TimesheetItem } from '../timesheet.models';
+
 @Component({
   selector: 'app-timesheet-list',
   templateUrl: './timesheet-list.component.html',
@@ -7,9 +12,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimesheetListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private timesheetService: TimesheetService) { }
+
+  public $timesheets: Observable<Array<TimesheetItem>> = new Observable<Array<TimesheetItem>>();
 
   ngOnInit() {
+  	this.$timesheets = this.timesheetService.GetAll();
   }
 
 }

@@ -24,7 +24,7 @@ namespace Cmx.Timesheet.Api
         private static void RegisterDataStores(IUnityContainer container)
         {
             container.RegisterType<IWorkDayDataStore, DocumentDbWorkDayDataStore>();
-            container.RegisterType<ITimesheetDataStore, DocumentDbTimesheetDataStore>();
+            container.RegisterType<ITimesheetDataStore, TimesheetDataStore>();
         }
 
         private static void RegisterProviders(IUnityContainer container)

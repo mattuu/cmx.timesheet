@@ -9,6 +9,7 @@ namespace Cmx.Timesheet.Api
         protected void Application_Start(object sender, EventArgs e)
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            UnityConfig.RegisterComponents();
 
             //JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             //{

@@ -1,13 +1,20 @@
+using System.Configuration;
+using System.Web.Http;
 using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.Services;
 using Microsoft.Practices.Unity;
+using Unity.WebApi;
 
 namespace Cmx.Timesheet.Api
 {
     public static class UnityConfig
     {
-        public static void RegisterComponents(IUnityContainer container)
+        public static void RegisterComponents()
         {
+            var container = new UnityContainer();
+
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+
             RegisterServices(container);
             RegisterDataStores(container);
             RegisterProviders(container);

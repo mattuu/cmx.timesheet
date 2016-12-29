@@ -1,5 +1,4 @@
 ﻿using System;
-using Cmx.Timesheet.DomainModel;
 
 namespace Cmx.Timesheet.Model
 {
@@ -7,6 +6,6 @@ namespace Cmx.Timesheet.Model
     {
         public Guid TimesheetId { get; set; }
 
-        public TimesheetStatus Status { get; set; } 
+        //public TimesheetStatus Status { get; set; } 
     }
 }

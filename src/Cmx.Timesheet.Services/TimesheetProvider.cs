@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cmx.Timesheet.DataAccess;
+using Cmx.Timesheet.DataAccess.Models;
 using Cmx.Timesheet.DomainModel;
 using Cmx.Timesheet.Model;
 
@@ -30,7 +31,7 @@ namespace Cmx.Timesheet.Services
                     TimesheetId = t.Id ?? default(Guid),
                     StartDate = t.StartDate,
                     EndDate = t.EndDate,
-                    Status = t.Status
+                    //Status = t.Status
                 });
             });
         }

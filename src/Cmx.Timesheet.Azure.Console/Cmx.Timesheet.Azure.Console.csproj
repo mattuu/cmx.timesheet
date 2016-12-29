@@ -95,10 +95,6 @@
       <Project>{78506DD1-2EA8-48B5-9561-9A19E7EAD979}</Project>
       <Name>Cmx.Timesheet.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cmx.Timesheet.DomainModel\Cmx.Timesheet.DomainModel.csproj">
-      <Project>{AC28BF08-2151-4F46-BDBC-43D123CB9160}</Project>
-      <Name>Cmx.Timesheet.DomainModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Azure.DocumentDB.1.9.2\build\Microsoft.Azure.DocumentDB.targets" Condition="Exists('..\..\packages\Microsoft.Azure.DocumentDB.1.9.2\build\Microsoft.Azure.DocumentDB.targets')" />

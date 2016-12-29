@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Cmx.Timesheet.DomainModel;
+using Cmx.Timesheet.DataAccess.Models;
 using MongoDB.Driver;
 
 namespace Cmx.Timesheet.DataAccess

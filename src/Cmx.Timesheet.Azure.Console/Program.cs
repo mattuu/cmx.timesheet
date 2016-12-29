@@ -28,7 +28,7 @@ namespace Cmx.Timesheet.Azure.Console
             var container = new UnityContainer();
             _documentCollectionOrDatabaseUri = UriFactory.CreateDocumentCollectionUri(DatabaseName, CollectionName);
 
-            UnityConfig.RegisterComponents(container);
+            Api.UnityConfig.RegisterComponents(container);
             var dataStore = container.Resolve<ITimesheetDataStore>();
 
             System.Console.WriteLine("RUNNING...");

@@ -2,6 +2,5 @@
 {
     public interface IMap<in TFrom, out TTo>
     {
-        void CreateMap();
     }
 }

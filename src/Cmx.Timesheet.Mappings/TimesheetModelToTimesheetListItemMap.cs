@@ -4,11 +4,11 @@ using Cmx.Timesheet.DataAccess.Models;
 
 namespace Cmx.Timesheet.Mappings
 {
-    public class TimesheetModelToTimesheetListItemMap : IMap<TimesheetModel, TimesheetListItem>
+    public class TimesheetModelToTimesheetListItemMap : AutoMapperMap<TimesheetModel, TimesheetListItem>
     {
-        public void CreateMap()
+        public TimesheetModelToTimesheetListItemMap()
         {
-            throw new NotImplementedException();
+            Map.ForMember(i => i.TimesheetId, cfg => cfg.MapFrom(m => m.Id));
         }
     }
 }

@@ -18,6 +18,8 @@ namespace Cmx.Timesheet.DataAccess
             }));
             container.RegisterType<IMongoDatabase>(
                 new InjectionFactory(c => c.Resolve<IMongoClient>().GetDatabase("cmx_timesheet")));
+
+            container.RegisterType<ITimesheetDataStore, TimesheetDataStore>();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Cmx.Timesheet.DomainModel;
+using Cmx.Timesheet.DataAccess.Models;
 using Cmx.Timesheet.TestUtils.Attributes;
 using MongoDB.Driver;
 using Moq;

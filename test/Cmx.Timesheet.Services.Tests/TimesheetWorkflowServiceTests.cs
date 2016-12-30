@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cmx.Timesheet.DataAccess;
-using Cmx.Timesheet.DomainModel;
+using Cmx.Timesheet.DataAccess.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Ploeh.AutoFixture;
@@ -36,7 +36,7 @@ namespace Cmx.Timesheet.Services.Tests
         }
 
         [TestMethod]
-        public void ApproveTimesheet_ShouldCall_UpdateTimesheet_On_ITimesheetStore_With_TimesheetStatus_Equals_Approved()
+        public void     ApproveTimesheet_ShouldCall_UpdateTimesheet_On_ITimesheetStore_With_TimesheetStatus_Equals_Approved()
         {
             _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<Guid>())).Returns<Guid>(id => Task.FromResult(new TimesheetModel {Id = id}));
 

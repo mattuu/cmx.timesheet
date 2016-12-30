@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Cmx.Timesheet.DomainModel.Configuration;
+using Cmx.Timesheet.DataAccess.Models.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Cmx.Timesheet.Services.Tests

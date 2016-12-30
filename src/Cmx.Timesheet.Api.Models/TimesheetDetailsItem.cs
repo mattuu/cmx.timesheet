@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Cmx.Timesheet.Model
+namespace Cmx.Timesheet.Api.Models
 {
     public class TimesheetDetailsItem
     {

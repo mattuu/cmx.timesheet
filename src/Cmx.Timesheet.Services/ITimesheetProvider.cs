@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Cmx.Timesheet.Model;
+using Cmx.Timesheet.Api.Models;
 
 namespace Cmx.Timesheet.Services
 {

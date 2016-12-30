@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Cmx.Timesheet.Api.Models")]
+[assembly: AssemblyTitle("Cmx.Timesheet.Mappings.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Dartgroup PLC")]
-[assembly: AssemblyProduct("Cmx.Timesheet.Api.Models")]
+[assembly: AssemblyProduct("Cmx.Timesheet.Mappings.Tests")]
 [assembly: AssemblyCopyright("Copyright © Dartgroup PLC 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("882e539b-2c19-4426-a22e-052be60b69dc")]
+[assembly: Guid("bef4a92c-3b3a-4dcc-a6e2-36ee90865aa0")]
 
 // Version information for an assembly consists of the following four values:
 //

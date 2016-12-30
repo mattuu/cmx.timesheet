@@ -1,6 +1,6 @@
 using System;
-using Cmx.Timesheet.DomainModel;
-using Cmx.Timesheet.DomainModel.Configuration;
+using Cmx.Timesheet.DataAccess.Models;
+using Cmx.Timesheet.DataAccess.Models.Configuration;
 
 namespace Cmx.Timesheet.Services
 {

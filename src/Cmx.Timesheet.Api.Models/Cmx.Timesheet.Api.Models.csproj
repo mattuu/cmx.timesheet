@@ -7,8 +7,8 @@
     <ProjectGuid>{882E539B-2C19-4426-A22E-052BE60B69DC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cmx.Timesheet.Model</RootNamespace>
-    <AssemblyName>Cmx.Timesheet.Model</AssemblyName>
+    <RootNamespace>Cmx.Timesheet.Api.Models</RootNamespace>
+    <AssemblyName>Cmx.Timesheet.Api.Models</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

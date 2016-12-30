@@ -1,5 +1,6 @@
 ﻿using Cmx.Timesheet.Api.Controllers;
 using Cmx.Timesheet.Services;
+using Cmx.Timesheet.TestUtils.Attributes;
 using Moq;
 using Ploeh.AutoFixture.Idioms;
 using Ploeh.AutoFixture.Xunit2;
@@ -15,9 +16,8 @@ namespace J2BI.Namespace.Template.Api.Tests.Controllers
             assertion.Verify(typeof(TimesheetController).GetConstructors());
         }
 
-        [Theory, AutoMoqData]
-        public async void GetAll_ShouldCall_GetAll_On_ITimesheetDataStore(
-            [Frozen] Mock<ITimesheetProvider> timesheetProviderMock, TimesheetController sut)
+        [Theory, WebApiAutoMoqData]
+        public async void GetAll_ShouldCall_GetAll_On_ITimesheetDataStore([Frozen] Mock<ITimesheetProvider> timesheetProviderMock, TimesheetController sut)
         {
             // act..
             await sut.GetAll();

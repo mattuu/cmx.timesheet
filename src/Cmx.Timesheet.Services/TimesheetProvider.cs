@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Cmx.Timesheet.Api.Models;
 using Cmx.Timesheet.DataAccess;
 using Cmx.Timesheet.DataAccess.Models;
@@ -11,11 +12,14 @@ namespace Cmx.Timesheet.Services
     public class TimesheetProvider : ITimesheetProvider
     {
         private readonly ITimesheetDataStore _timesheetDataStore;
+        private readonly IMapper _mapper;
 
-        public TimesheetProvider(ITimesheetDataStore timesheetDataStore)
+        public TimesheetProvider(ITimesheetDataStore timesheetDataStore, IMapper mapper)
         {
             if (timesheetDataStore == null) throw new ArgumentNullException(nameof(timesheetDataStore));
+            if (mapper == null) throw new ArgumentNullException(nameof(mapper));
             _timesheetDataStore = timesheetDataStore;
+            _mapper = mapper;
         }
 
         public Task<IEnumerable<TimesheetListItem>> GetTimesheetListItems()
@@ -25,13 +29,7 @@ namespace Cmx.Timesheet.Services
             return Task.Factory.FromAsync(task, result =>
             {
                 var originalTask = result as Task<IEnumerable<TimesheetModel>>;
-                return originalTask?.Result.Select(t => new TimesheetListItem
-                {
-                    TimesheetId = t.Id ?? default(Guid),
-                    StartDate = t.StartDate,
-                    EndDate = t.EndDate,
-                    //Status = t.Status
-                });
+                return originalTask?.Result.Select(t => _mapper.Map<TimesheetListItem>(t));
             });
         }
 
@@ -47,7 +45,7 @@ namespace Cmx.Timesheet.Services
                 {
                     return new TimesheetDetailsItem
                     {
-                        TimesheetId = model.Id ?? default(Guid),
+                        //TimesheetId = model.Id ?? default(Guid),
                         StartDate = model.StartDate,
                         EndDate = model.EndDate
                     };
@@ -75,7 +73,7 @@ namespace Cmx.Timesheet.Services
                 {
                     return new TimesheetDetailsItem
                     {
-                        TimesheetId = model.Id ?? default(Guid),
+                        //TimesheetId = model.Id ?? default(Guid),
                         StartDate = model.StartDate,
                         EndDate = model.EndDate
                     };

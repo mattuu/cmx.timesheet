@@ -17,6 +17,8 @@ namespace Cmx.Timesheet.Api
             RegisterProviders(container);
 
             DataAccess.UnityConfig.RegisterTypes(container);
+
+            Mappings.UnityConfig.RegisterComponents(container);
         }
 
         private static void RegisterServices(IUnityContainer container)

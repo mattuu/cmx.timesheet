@@ -8,7 +8,7 @@ namespace Cmx.Timesheet.Mappings
     {
         public TimesheetModelToTimesheetListItemMap()
         {
-            Map.ForMember(i => i.TimesheetId, cfg => cfg.MapFrom(m => m.Id));
+            Map.ForMember(i => i.TimesheetId, cfg => cfg.MapFrom(m => $"{m.Id}"));
         }
     }
 }

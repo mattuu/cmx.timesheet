@@ -26,7 +26,7 @@ namespace Cmx.Timesheet.Mappings.Tests
             var actual = Mapper.Map<TimesheetListItem>(source);
 
             // arrange..
-            //actual.TimesheetId.ShouldBe(source.Id);
+            actual.TimesheetId.ShouldBe($"{source.Id}");
 
         }
     }

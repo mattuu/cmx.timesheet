@@ -82,6 +82,7 @@
     <Compile Include="ITimesheetConfigDataStore.cs" />
     <Compile Include="ITimesheetDataStore.cs" />
     <Compile Include="IWorkDayDataStore.cs" />
+    <Compile Include="MongoDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimesheetDataStore.cs" />
     <Compile Include="UnityConfig.cs" />

@@ -151,6 +151,10 @@
       <Project>{78506DD1-2EA8-48B5-9561-9A19E7EAD979}</Project>
       <Name>Cmx.Timesheet.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cmx.Timesheet.Mappings\Cmx.Timesheet.Mappings.csproj">
+      <Project>{c3e3f1b0-faaa-4dbf-9fc9-aa8645f2fac7}</Project>
+      <Name>Cmx.Timesheet.Mappings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cmx.Timesheet.Services\Cmx.Timesheet.Services.csproj">
       <Project>{108A749A-3949-4D8A-AA75-C327B1929A60}</Project>
       <Name>Cmx.Timesheet.Services</Name>

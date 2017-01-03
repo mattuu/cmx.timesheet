@@ -1,10 +1,14 @@
 ﻿using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace Cmx.Timesheet.DataAccess.Models
 {
     public class TimesheetModel
     {
-        public Guid? Id { get; set; }
+        [BsonId]
+        public BsonObjectId Id { get; set; }
 
         public DateTime StartDate { get; set; }
 

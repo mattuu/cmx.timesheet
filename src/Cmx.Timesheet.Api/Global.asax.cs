@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Http;
+using Cmx.Timesheet.DataAccess;
 
 namespace Cmx.Timesheet.Api
 {
@@ -8,8 +9,10 @@ namespace Cmx.Timesheet.Api
     {
         protected void Application_Start(object sender, EventArgs e)
         {
+            MongoDbConfig.Register();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             UnityConfig.RegisterComponents();
+
 
             //JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             //{

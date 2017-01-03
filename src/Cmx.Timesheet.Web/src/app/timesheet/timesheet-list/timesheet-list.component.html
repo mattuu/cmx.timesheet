@@ -9,5 +9,10 @@
             <th>Created Date</th>
         </tr>
     </thead>
+    <tbody>
+        <tr *ngFor="let t for $timesheets | async">
+            <td> {{ TimesheetId }}</td>
+        </tr>
+    </tbody>
 </table>
 <pre> {{ $timesheets | async | json }}</pre>

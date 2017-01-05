@@ -1,5 +1,5 @@
 export class TimesheetItem {
-	public Id: number;
+	public TimesheetId: string;
 	public StartDate: Date;
 	public EndDate: Date;
 	public CreatedOn: Date;

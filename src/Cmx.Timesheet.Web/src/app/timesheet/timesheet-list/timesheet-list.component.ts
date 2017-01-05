@@ -14,10 +14,10 @@ export class TimesheetListComponent implements OnInit {
 
   constructor(private timesheetService: TimesheetService) { }
 
-  public $timesheets: Observable<Array<TimesheetItem>> = new Observable<Array<TimesheetItem>>();
+  public timesheets$: Observable<Array<TimesheetItem>> = new Observable<Array<TimesheetItem>>();
 
   ngOnInit() {
-  	this.$timesheets = this.timesheetService.GetAll();
+  	this.timesheets$ = this.timesheetService.GetAll();
   }
 
 }

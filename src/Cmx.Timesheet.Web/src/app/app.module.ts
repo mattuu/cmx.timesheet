@@ -8,7 +8,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { TopNavModule } from './top-nav/top-nav.module';
+import { SharedModule } from './shared/shared.module';
 import { TimesheetModule } from './timesheet/timesheet.module';
+import { CalendarModule } from './calendar/calendar.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -22,7 +24,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule,
     TopNavModule,
+    SharedModule,
     TimesheetModule,
+    CalendarModule,
     AppRoutingModule
   ],
   providers: [],

@@ -1,0 +1,8 @@
+.calendar {
+	width: 100%;
+}
+
+.calendar th {
+	width: 14.3%;
+	text-align: center;
+}

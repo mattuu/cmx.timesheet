@@ -1,7 +1,10 @@
 <p>
-  workday-form works!
+    workday-form works!
 </p>
-
 <form (submit)="onSubmit()">
-	<edit-workday [(workDay)]="workDay"></edit-workday>
+    <edit-workday [(workDay)]="workDay"></edit-workday>
+    <div class="form-group">
+    	<button type="submit" class="btn btn-success">Save</button>
+    	<button type="reset" class="btn btn-default">Cancel</button>
+    </div>
 </form>

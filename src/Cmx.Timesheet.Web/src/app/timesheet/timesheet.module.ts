@@ -20,6 +20,12 @@ import { TimesheetService } from './timesheet.service';
     CreateTimesheetComponent
   ],
   declarations: [
+<<<<<<< 7d76f88a60921aceb57e0035d73f58bacdc2579e
+=======
+    CreateTimesheetFormComponent,
+    TimesheetListComponent,
+    CreateTimesheetComponent    
+>>>>>>> Workday edit form added to create timesheet page
   ],
   providers: [
   	TimesheetService

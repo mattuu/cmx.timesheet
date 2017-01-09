@@ -18,8 +18,7 @@ export class CalendarViewComponent implements OnInit {
 
   // public rows: Array<<Array<Date>>  = [];
   public weekdays: Array<string>  = [];
-  public weeks: Array<Array<Date>>  = [];
-  public startDateOffset: Array<any>;
+  public calendar: Array<Array<Date>>  = [];
 
   ngOnInit() {
 
@@ -34,7 +33,7 @@ export class CalendarViewComponent implements OnInit {
 	let cMon = new calendar.Calendar(1); // weeks starts on Monday
  	let mdc = cMon.monthDays(2016, 0);
 
- 	mdc.map(week => this.weeks.push(week));
+ 	mdc.map(week => this.calendar.push(week));
 
   	// let week = new Array<Date>();
 	// this.dates.push(week);

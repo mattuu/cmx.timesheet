@@ -6,3 +6,7 @@
 	width: 14.3%;
 	text-align: center;
 }
+
+.calendar td {
+	text-align: center;
+}

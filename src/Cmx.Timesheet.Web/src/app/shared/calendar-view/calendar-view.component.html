@@ -11,5 +11,13 @@
 		</tr>
 	</thead>
 	<tbody>
+		<tr>
+		</tr>
+		<tr *ngFor="let week of weeks">
+			<td *ngFor="let date of week">
+				<span class="thumbnail">{{ date }}</span>
+			</td>
+
+		</tr>
 	</tbody>
 </table>

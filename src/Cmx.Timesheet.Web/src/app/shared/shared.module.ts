@@ -12,11 +12,11 @@ import { CalendarViewComponent } from './calendar-view/calendar-view.component';
     FormsModule
   ],
   exports: [
-  	EditWorkdayComponent
+  	EditWorkdayComponent,
   	CalendarViewComponent
   ],
   declarations: [
-  	EditWorkdayComponent
+  	EditWorkdayComponent,
   	CalendarViewComponent
   ]
 })

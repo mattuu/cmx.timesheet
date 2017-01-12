@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { WorkdayFormComponent } from '../../shared/workday-form/workday-form.component';
 
 @Component({
-  selector: 'app-submit-today',
+  selector: 'submit-today',
   templateUrl: './submit-today.component.html',
   styleUrls: ['./submit-today.component.css']
 })

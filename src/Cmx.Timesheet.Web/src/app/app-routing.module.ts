@@ -11,7 +11,7 @@ import { CreateTimesheetComponent } from './timesheet/create-timesheet/create-ti
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: '/', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'timesheet', component: TimesheetListComponent },
   { path: 'create-timesheet', component: CreateTimesheetComponent }
 ];

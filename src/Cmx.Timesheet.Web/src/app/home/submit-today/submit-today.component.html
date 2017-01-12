@@ -1,5 +1,10 @@
 <p>
-  submit-today works!
+    submit-today works!
 </p>
-
-<workday-form [date]="today" (submitted)="onSubmit()"></workday-form>
+<div class="jumbotron col-md-offset-4 col-md-4">
+    <div class="container">
+        <h1>Welcome!</h1>
+        <p>Today is {{ today | date:'dd MMMM yyyy' }}</p>
+        <workday-form [date]="today" (submitted)="onSubmit()"></workday-form>
+    </div>
+</div>

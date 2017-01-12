@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { EditWorkdayComponent } from './edit-workday/edit-workday.component';
 import { CalendarViewComponent } from './calendar-view/calendar-view.component';
-
+import { WorkdayFormComponent } from './workday-form/workday-form.component';
 
 @NgModule({
   imports: [
@@ -12,12 +12,14 @@ import { CalendarViewComponent } from './calendar-view/calendar-view.component';
     FormsModule
   ],
   exports: [
+    CalendarViewComponent,
   	EditWorkdayComponent,
-  	CalendarViewComponent
+    WorkdayFormComponent
   ],
   declarations: [
+    CalendarViewComponent,
   	EditWorkdayComponent,
-  	CalendarViewComponent
+    WorkdayFormComponent
   ]
 })
 export class SharedModule { }

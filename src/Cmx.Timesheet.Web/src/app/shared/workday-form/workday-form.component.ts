@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { EditWorkdayComponent } from '../../shared/edit-workday/edit-workday.component';
-import { WorkDay } from '../../shared/shared.models';
+import { EditWorkdayComponent } from '../edit-workday/edit-workday.component';
+import { WorkDay } from '../shared.models';
 
 @Component({
   selector: 'workday-form',

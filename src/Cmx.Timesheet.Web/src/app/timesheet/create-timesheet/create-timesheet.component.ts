@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WorkdayFormComponent } from '../../calendar/workday-form/workday-form.component';
+import { WorkdayFormComponent } from '../../shared/workday-form/workday-form.component';
 
 @Component({
   selector: 'create-timesheet',

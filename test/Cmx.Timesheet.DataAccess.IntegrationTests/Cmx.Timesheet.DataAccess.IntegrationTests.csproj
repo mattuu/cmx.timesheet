@@ -113,10 +113,25 @@
   <ItemGroup>
     <Compile Include="TimesheetDataStoreTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkDayDataStoreTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Cmx.Timesheet.DataAccess.Models\Cmx.Timesheet.DataAccess.Models.csproj">
+      <Project>{1C2C2403-FBCB-4C6F-8562-5974A4E91E82}</Project>
+      <Name>Cmx.Timesheet.DataAccess.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Cmx.Timesheet.DataAccess\Cmx.Timesheet.DataAccess.csproj">
+      <Project>{78506DD1-2EA8-48B5-9561-9A19E7EAD979}</Project>
+      <Name>Cmx.Timesheet.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cmx.Timesheet.TestUtils\Cmx.Timesheet.TestUtils.csproj">
+      <Project>{E4719E81-8532-4ADA-A46D-A373A5EDAA44}</Project>
+      <Name>Cmx.Timesheet.TestUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

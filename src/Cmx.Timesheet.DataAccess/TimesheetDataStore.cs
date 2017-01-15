@@ -6,27 +6,18 @@ using MongoDB.Driver;
 
 namespace Cmx.Timesheet.DataAccess
 {
-    public class TimesheetDataStore : ITimesheetDataStore
+    public class TimesheetDataStore : MongoDbDataStoreBase<TimesheetModel>, ITimesheetDataStore
     {
         internal const string TimesheetCollectionName = "timesheets";
-        private readonly IMongoDatabase _mongoDatabase;
-        private IMongoCollection<TimesheetModel> _collection;
-
+        
         public TimesheetDataStore(IMongoDatabase mongoDatabase)
+            :base(mongoDatabase, TimesheetCollectionName)
         {
-            if (mongoDatabase == null) throw new ArgumentNullException(nameof(mongoDatabase));
-            _mongoDatabase = mongoDatabase;
-
-            _collection = mongoDatabase.GetCollection<TimesheetModel>(TimesheetCollectionName, new MongoCollectionSettings
-            {
-                AssignIdOnInsert = true
-            });
         }
 
         public async Task<IEnumerable<TimesheetModel>> GetTimesheets()
         {
-            return await _mongoDatabase.GetCollection<TimesheetModel>(TimesheetCollectionName)
-                                       .FindSync(tm => true)
+            return await MongoCollection.FindSync(tm => true)
                                        .ToListAsync();
         }
 
@@ -37,8 +28,7 @@ namespace Cmx.Timesheet.DataAccess
 
         public async Task<TimesheetModel> GetTimesheetById(Guid timesheetId)
         {
-            return await _mongoDatabase.GetCollection<TimesheetModel>(TimesheetCollectionName)
-                                       .FindSync(tm => tm.Id == timesheetId)
+            return await MongoCollection.FindSync(tm => tm.Id == timesheetId)
                                        .FirstAsync();
         }
 

@@ -7,9 +7,10 @@ namespace Cmx.Timesheet.TestUtils.Attributes
     public class AutoMoqDataAttribute : AutoDataAttribute
     {
         public AutoMoqDataAttribute()
-            : base(new Fixture().Customize(new AutoMoqCustomization()))
+            : base(new Fixture())
         {
-            Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+            Fixture.Customize(new AutoMoqCustomization())
+                .Behaviors.Add(new OmitOnRecursionBehavior());
         }
     }
 }

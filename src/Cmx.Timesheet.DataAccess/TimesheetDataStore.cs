@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cmx.Timesheet.DataAccess.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Cmx.Timesheet.DataAccess
@@ -28,7 +29,7 @@ namespace Cmx.Timesheet.DataAccess
 
         public async Task<TimesheetModel> GetTimesheetById(Guid timesheetId)
         {
-            return await MongoCollection.FindSync(tm => tm.Id == timesheetId)
+            return await MongoCollection.FindSync(tm => tm.Id == ObjectId.Parse(timesheetId.ToString()))
                                        .FirstAsync();
         }
 
@@ -37,9 +38,10 @@ namespace Cmx.Timesheet.DataAccess
             throw new NotImplementedException();
         }
 
-        public Task<TimesheetModel> CreateTimesheet(TimesheetModel timesheetModel)
+        public async Task<TimesheetModel> CreateTimesheet(TimesheetModel timesheetModel)
         {
-            throw new NotImplementedException();
+            await MongoCollection.InsertOneAsync(timesheetModel);
+            return await Task.FromResult(timesheetModel);
         }
 
         public Task<bool> DeleteTimesheet(Guid timesheetId)

@@ -26,7 +26,7 @@ namespace Cmx.Timesheet.Services.Tests
         [TestMethod]
         public void SubmitTimesheet_ShouldCall_UpdateTimesheet_On_ITimesheetStore_With_TimesheetStatus_Equals_Submitted()
         {
-            _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<Guid>())).Returns<Guid>(id => Task.FromResult(new TimesheetModel { Id = id }));
+            //_timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<Guid>())).Returns<Guid>(id => Task.FromResult(new TimesheetModel { Id = id }));
 
             _timesheetStoreMock.Setup(s => s.UpdateTimesheet(It.Is<TimesheetModel>(tm => tm.Status == TimesheetStatus.Submitted))).Verifiable();
 
@@ -38,7 +38,7 @@ namespace Cmx.Timesheet.Services.Tests
         [TestMethod]
         public void     ApproveTimesheet_ShouldCall_UpdateTimesheet_On_ITimesheetStore_With_TimesheetStatus_Equals_Approved()
         {
-            _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<Guid>())).Returns<Guid>(id => Task.FromResult(new TimesheetModel {Id = id}));
+            //_timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<Guid>())).Returns<Guid>(id => Task.FromResult(new TimesheetModel {Id = id}));
 
             _timesheetStoreMock.Setup(s => s.UpdateTimesheet(It.Is<TimesheetModel>(tm => tm.Status == TimesheetStatus.Approved))).Verifiable();
 
@@ -50,7 +50,7 @@ namespace Cmx.Timesheet.Services.Tests
         [TestMethod]
         public void RejectTimesheet_ShouldCall_UpdateTimesheet_On_ITimesheetStore_With_TimesheetStatus_Equals_Rejected()
         {
-            _timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<Guid>())).Returns<Guid>(id => Task.FromResult(new TimesheetModel { Id = id }));
+            //_timesheetStoreMock.Setup(s => s.GetTimesheetById(It.IsAny<Guid>())).Returns<Guid>(id => Task.FromResult(new TimesheetModel { Id = id }));
 
             _timesheetStoreMock.Setup(s => s.UpdateTimesheet(It.Is<TimesheetModel>(tm => tm.Status == TimesheetStatus.Rejected))).Verifiable();
 

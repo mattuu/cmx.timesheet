@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -48,5 +49,7 @@ namespace Cmx.Timesheet.DataAccess.Models
         [BsonElement]
         public string RejectedBy { get; set; }
 
+        [BsonElement]
+        public IEnumerable<WorkDayModel> WorkDays { get; set; }
     }
 }

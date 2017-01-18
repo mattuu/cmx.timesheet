@@ -26,14 +26,24 @@ namespace Cmx.Timesheet.Services.Tests
             actual.ShouldNotBeNull();
         }
 
-        [Theory, AutoMoqData]
-        public void Initialize_ShouldPopulateStartDate(TimesheetConfigModel configModel, DateTime startDate, TimesheetFactory sut)
+        [Theory]
+        //[InlineAutoMoqData("2017/01/15", "2017/01/09")]
+        //[InlineAutoMoqData("2017/01/16", "2017/01/16")]
+        //[InlineAutoMoqData("2017/01/18", "2017/01/16")]
+        //[InlineAutoMoqData("2017/01/22", "2017/01/16")]
+        //[InlineAutoMoqData("2017/01/23", "2017/01/23")]
+        [InlineAutoMoqData("2017/01/01", "2017/01/01")]
+        [InlineAutoMoqData("2017/01/18", "2017/01/01")]
+        [InlineAutoMoqData("2017/01/31", "2017/01/01")]
+        public void Initialize_ShouldCalculateCorrectStartDate_WhenTimesheetFrequencyIsMonthly(string expectedStartDateString, string startDateString, TimesheetConfigModel configModel, TimesheetFactory sut)
         {
             // arrange..
+            var startDate = DateTime.Parse(startDateString);
             var actual = sut.Create(configModel, startDate);
 
             // assert..
-            actual.StartDate.ShouldBe(startDate);
+            var expectedStartDate = DateTime.Parse(expectedStartDateString);
+            actual.StartDate.ShouldBe(expectedStartDate);
         }
 
 
@@ -68,7 +78,7 @@ namespace Cmx.Timesheet.Services.Tests
         }
 
         [Theory, AutoMoqData]
-        public void Initialize_ShouldCalculateCorrectWorkDays(IFixture fixture, DateTime startDate, TimesheetFactory sut)
+        public void Initialize_ShouldCalculateCorrectWorkDays_When_TimesheetFrequencyIsMonthly(IFixture fixture, DateTime startDate, TimesheetFactory sut)
         {
             // arrange..
             var config = fixture.Build<TimesheetConfigModel>()
@@ -76,7 +86,12 @@ namespace Cmx.Timesheet.Services.Tests
                                 .With(m => m.Frequency, TimesheetFrequency.Monthly)
                                 .Create();
 
-            var timesheet = sut.Create(config, startDate);
+            // act..
+            var actual = sut.Create(config, startDate);
+
+            // assert..
+            var workDays = actual.WorkDays;
+
 
             //var workDays = timesheet.WorkDays;
             //Assert.AreEqual(22, workDays.Count);

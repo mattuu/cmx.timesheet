@@ -14,12 +14,33 @@ namespace Cmx.Timesheet.Services
     {
         public DateTime CalculateStartDate(DateTime effectiveDate, TimesheetFrequency frequency)
         {
-            throw new NotImplementedException();
+            switch (frequency)
+            {
+                case TimesheetFrequency.Monthly:
+                    return effectiveDate.AddDays(1 - effectiveDate.Day);
+                case TimesheetFrequency.Weekly:
+                    return
+                        effectiveDate.AddDays(1 -
+                                              (effectiveDate.DayOfWeek == DayOfWeek.Sunday
+                                                  ? 7
+                                                  : (int) effectiveDate.DayOfWeek));
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(frequency));
+            }
         }
 
         public DateTime CalculateEndDate(DateTime effectiveDate, TimesheetFrequency frequency)
         {
-            throw new NotImplementedException();
+            var startDate = CalculateStartDate(effectiveDate, frequency).AddDays(-1);
+            switch (frequency)
+            {
+                case TimesheetFrequency.Monthly:
+                    return startDate.AddMonths(1);
+                case TimesheetFrequency.Weekly:
+                    return startDate.AddDays(7);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(frequency));
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Cmx.Timesheet.Services.Tests
         [InlineAutoMoqData("2017/01/16", TimesheetFrequency.Weekly, "2017/01/16")]
         [InlineAutoMoqData("2017/01/18", TimesheetFrequency.Weekly, "2017/01/16")]
         [InlineAutoMoqData("2017/01/22", TimesheetFrequency.Weekly, "2017/01/16")]
-        public void CalculateStartDate_ShouldReturnCorrectResult_WhenTimesheetFrequencyIsMonthly(
+        public void CalculateStartDate_ShouldReturnCorrectResult(
             string effectiveDateString,
             TimesheetFrequency timesheetFrequency,
             string expectedStartDateString,
@@ -48,7 +48,7 @@ namespace Cmx.Timesheet.Services.Tests
         [InlineAutoMoqData("2017/01/16", TimesheetFrequency.Weekly, "2017/01/22")]
         [InlineAutoMoqData("2017/01/18", TimesheetFrequency.Weekly, "2017/01/22")]
         [InlineAutoMoqData("2017/01/22", TimesheetFrequency.Weekly, "2017/01/22")]
-        public void CalculateEndDate_ShouldReturnCorrectResult_WhenTimesheetFrequencyIsMonthly(
+        public void CalculateEndDate_ShouldReturnCorrectResult(
             string effectiveDateString,
             TimesheetFrequency timesheetFrequency,
             string expectedEndDateString,

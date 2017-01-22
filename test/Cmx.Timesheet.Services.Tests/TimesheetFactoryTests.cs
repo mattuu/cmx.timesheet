@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Cmx.Timesheet.DataAccess.Models;
 using Cmx.Timesheet.DataAccess.Models.Configuration;
 using Cmx.Timesheet.TestUtils.Attributes;
 using Moq;
-using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Idioms;
 using Ploeh.AutoFixture.Xunit2;
+using Ploeh.SemanticComparison.Fluent;
 using Shouldly;
 using Xunit;
 
@@ -19,7 +22,7 @@ namespace Cmx.Timesheet.Services.Tests
         }
 
         [Theory, AutoMoqData]
-        public void Initialize_ShouldCreateTimesheetInstance(TimesheetConfigModel config, DateTime startDate,
+        public void Create_ShouldCreateInstanceOfTimesheetModel(TimesheetConfigModel config, DateTime startDate,
             TimesheetFactory sut)
         {
             // act..
@@ -27,6 +30,19 @@ namespace Cmx.Timesheet.Services.Tests
 
             // assert..
             actual.ShouldNotBeNull();
+        }
+
+        [Theory]
+        [InlineAutoMoqData(null)]
+        public void Create_ThrowException_WhenTimesheetConfigModelIsNull(TimesheetConfigModel config, DateTime startDate,
+            TimesheetFactory sut)
+        {
+            // act..
+            var exception = Record.Exception(() => sut.Create(config, startDate));
+
+            // assert..
+            exception.ShouldNotBeNull();
+            exception.ShouldBeOfType<ArgumentNullException>();
         }
 
         [Theory, AutoMoqData]
@@ -63,7 +79,7 @@ namespace Cmx.Timesheet.Services.Tests
 
             // assert..
             actual.StartDate.ShouldBe(startDate);
-        }    
+        }
 
         [Theory, AutoMoqData]
         public void Create_ShouldPopulate_TimesheetEndDate_WithCorrectValue(
@@ -85,34 +101,55 @@ namespace Cmx.Timesheet.Services.Tests
         }
 
         [Theory, AutoMoqData]
-        public void Create_ShouldCalculateCorrectWorkDays_When_TimesheetFrequencyIsMonthly(IFixture fixture,
-            DateTime startDate, TimesheetFactory sut)
+        public void Create_ShouldCall_Calculate_On_ITimesheetWorkdaysCalculator_WithCorrectArgs(
+            [Frozen] Mock<ITimesheetWorkdaysCalculator> timesheetWorkdaysCalculatorMock,
+            [Frozen] Mock<ITimesheetDatesCalculator> timesheetDatesCalculatorMock,
+            DateTime effectiveDate,
+            DateTime startDate,
+            DateTime endDate, 
+            TimesheetConfigModel config,
+            TimesheetFactory sut)
         {
             // arrange..
-            var config = fixture.Build<TimesheetConfigModel>()
-                .With(m => m.ApplicableDays, new TimesheetApplicableWeekDays(1, 2, 3, 4, 5))
-                .With(m => m.Frequency, TimesheetFrequency.Monthly)
-                .Create();
+            timesheetDatesCalculatorMock.Setup(m => m.CalculateStartDate(effectiveDate, config.Frequency)).Returns(startDate);
+            timesheetDatesCalculatorMock.Setup(m => m.CalculateEndDate(effectiveDate, config.Frequency)).Returns(endDate);
 
             // act..
-            var actual = sut.Create(config, startDate);
+            sut.Create(config, effectiveDate);
 
             // assert..
-            var workDays = actual.WorkDays;
+            timesheetWorkdaysCalculatorMock.Verify(m => m.Calculate(It.Is<DateTime>(d => d == startDate), 
+                It.Is<DateTime>(d => d == endDate),
+                It.Is<TimesheetFrequency>(f => f == config.Frequency),
+                It.Is<TimesheetApplicableWeekDays>(wd => wd == config.ApplicableDays)), Times.Once());
+        }
 
+        [Theory, AutoMoqData]
+        public void Create_ShouldPopulate_WorkDays_FromITimesheetWorkdaysCalculator(
+          [Frozen] Mock<ITimesheetWorkdaysCalculator> timesheetWorkdaysCalculatorMock,
+          [Frozen] Mock<ITimesheetDatesCalculator> timesheetDatesCalculatorMock,
+          DateTime effectiveDate,
+          DateTime startDate,
+          DateTime endDate,
+          IEnumerable<DateTime> workDays,
+          TimesheetConfigModel config,
+          TimesheetFactory sut)
+        {
+            // arrange..
+            timesheetDatesCalculatorMock.Setup(m => m.CalculateStartDate(effectiveDate, config.Frequency)).Returns(startDate);
+            timesheetDatesCalculatorMock.Setup(m => m.CalculateEndDate(effectiveDate, config.Frequency)).Returns(endDate);
 
-            //var workDays = timesheet.WorkDays;
-            //Assert.AreEqual(22, workDays.Count);
-            //Assert.AreEqual(new DateTime(2015, 10, 1), workDays.First().Date);
-            //Assert.AreEqual(new DateTime(2015, 10, 30), workDays.Last().Date);
+            timesheetWorkdaysCalculatorMock.Setup(m => m.Calculate(startDate,endDate,config.Frequency,config.ApplicableDays)).Returns(workDays);
 
-            //Assert.IsTrue(workDays.All(wd => wd.StartTime == config.DefaultStartTime));
-            //Assert.IsTrue(workDays.All(wd => wd.EndTime == config.DefaultEndTime));
-            //Assert.IsTrue(workDays.All(wd => wd.BreakStartTime == config.DefaultBreakStartTime));
-            //Assert.IsTrue(workDays.All(wd => wd.BreakEndTime == config.DefaultBreakEndTime));
+            // act..
+            var actual = sut.Create(config, effectiveDate);
 
-            //Assert.IsTrue(workDays.All(wd => wd.Date.DayOfWeek != DayOfWeek.Saturday));
-            //Assert.IsTrue(workDays.All(wd => wd.Date.DayOfWeek != DayOfWeek.Sunday));
+            // assert..
+            var expectations = actual.WorkDays.Select(wd => wd.AsSource()
+                .OfLikeness<DateTime>()
+                .With(dt => dt.Date).EqualsWhen((m, dt) => m.Date == dt));
+
+            expectations.Cast<object>().SequenceEqual(workDays.Cast<object>()).ShouldBeTrue();
         }
     }
 }

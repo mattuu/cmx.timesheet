@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Cmx.Timesheet.DataAccess.Models;
 using Cmx.Timesheet.DataAccess.Models.Configuration;
 
@@ -7,38 +8,35 @@ namespace Cmx.Timesheet.Services
     public class TimesheetFactory : ITimesheetFactory
     {
         private readonly ITimesheetDatesCalculator _timesheetDatesCalculator;
+        private readonly ITimesheetWorkdaysCalculator _timesheetWorkdaysCalculator;
 
-        public TimesheetFactory(ITimesheetDatesCalculator timesheetDatesCalculator)
+        public TimesheetFactory(ITimesheetDatesCalculator timesheetDatesCalculator, ITimesheetWorkdaysCalculator timesheetWorkdaysCalculator)
         {
             if (timesheetDatesCalculator == null) throw new ArgumentNullException(nameof(timesheetDatesCalculator));
+            if (timesheetWorkdaysCalculator == null)
+                throw new ArgumentNullException(nameof(timesheetWorkdaysCalculator));
             _timesheetDatesCalculator = timesheetDatesCalculator;
+            _timesheetWorkdaysCalculator = timesheetWorkdaysCalculator;
         }
 
         public TimesheetModel Create(TimesheetConfigModel configuration, DateTime effectiveDate)
         {
             if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
+            var startDate = _timesheetDatesCalculator.CalculateStartDate(effectiveDate, configuration.Frequency);
+            var endDate = _timesheetDatesCalculator.CalculateEndDate(effectiveDate, configuration.Frequency);
+            var workdays = _timesheetWorkdaysCalculator.Calculate(startDate, endDate, configuration.Frequency, configuration.ApplicableDays);
+            
             var timesheet = new TimesheetModel
             {
-                StartDate = _timesheetDatesCalculator.CalculateStartDate(effectiveDate, configuration.Frequency),
-                EndDate = _timesheetDatesCalculator.CalculateEndDate(effectiveDate, configuration.Frequency)
-            };           
-
-            for (var date = timesheet.StartDate; date < timesheet.EndDate; date = date.AddDays(1))
-            {
-                if (configuration.ApplicableDays.Days.Contains(date.DayOfWeek))
+                StartDate = startDate,
+                EndDate = endDate,
+                WorkDays = workdays.Select(date => new WorkDayModel
                 {
-                    //timesheet.WorkDays.Add(new WorkDayModel
-                    //{
-                    //    Date = date,
-                    //    StartTime = configuration.DefaultStartTime,
-                    //    EndTime = configuration.DefaultEndTime,
-                    //    BreakStartTime = configuration.DefaultBreakStartTime,
-                    //    BreakEndTime = configuration.DefaultBreakEndTime
-                    //});
-                }
-            }
-
+                    Date = date
+                })    
+            };           
+          
             return timesheet;
         }
     }

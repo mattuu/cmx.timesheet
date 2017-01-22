@@ -6,26 +6,23 @@ namespace Cmx.Timesheet.Services
 {
     public class TimesheetFactory : ITimesheetFactory
     {
-        public TimesheetModel Create(TimesheetConfigModel configuration, DateTime startDate)
+        private readonly ITimesheetDatesCalculator _timesheetDatesCalculator;
+
+        public TimesheetFactory(ITimesheetDatesCalculator timesheetDatesCalculator)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (timesheetDatesCalculator == null) throw new ArgumentNullException(nameof(timesheetDatesCalculator));
+            _timesheetDatesCalculator = timesheetDatesCalculator;
+        }
+
+        public TimesheetModel Create(TimesheetConfigModel configuration, DateTime effectiveDate)
+        {
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
             var timesheet = new TimesheetModel
             {
-                StartDate = startDate
-            };
-
-            switch (configuration.Frequency)
-            {
-                case TimesheetFrequency.Monthly:
-                    timesheet.EndDate = timesheet.StartDate.AddMonths(1);
-                    break;
-                case TimesheetFrequency.Weekly:
-                    timesheet.EndDate = timesheet.StartDate.AddDays(7);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("configuration");
-            }
+                StartDate = _timesheetDatesCalculator.CalculateStartDate(effectiveDate, configuration.Frequency),
+                EndDate = _timesheetDatesCalculator.CalculateEndDate(effectiveDate, configuration.Frequency)
+            };           
 
             for (var date = timesheet.StartDate; date < timesheet.EndDate; date = date.AddDays(1))
             {

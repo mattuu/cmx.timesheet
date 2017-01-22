@@ -28,9 +28,9 @@ namespace Cmx.Timesheet.Services.Tests
             // assert..
             actual.ShouldNotBeNull();
         }
-        
+
         [Theory, AutoMoqData]
-        public void Initialize_ShouldCall_CalculateStartDate_On_ITimesheetDatesCalculator_WithCorrectArgs(
+        public void Create_ShouldCall_CalculateStartDate_On_ITimesheetDatesCalculator_WithCorrectArgs(
             DateTime effectiveDate,
             TimesheetConfigModel timesheetConfigModel,
             [Frozen] Mock<ITimesheetDatesCalculator> timesheetEndDateCalculatorMock,
@@ -47,7 +47,7 @@ namespace Cmx.Timesheet.Services.Tests
         }
 
         [Theory, AutoMoqData]
-        public void Initialize_ShouldPopulate_TimesheetStartDate_WithCorrectValue(
+        public void Create_ShouldPopulate_TimesheetStartDate_WithCorrectValue(
             DateTime effectiveDate,
             DateTime startDate,
             TimesheetConfigModel timesheetConfigModel,
@@ -62,28 +62,11 @@ namespace Cmx.Timesheet.Services.Tests
             var actual = sut.Create(timesheetConfigModel, effectiveDate);
 
             // assert..
-            actual.EndDate.ShouldBe(startDate);
-        }
+            actual.StartDate.ShouldBe(startDate);
+        }    
 
         [Theory, AutoMoqData]
-        public void Initialize_ShouldCall_CalculateEndDate_On_ITimesheetDatesCalculator_WithCorrectArgs(
-            DateTime startDate,
-            TimesheetConfigModel timesheetConfigModel,
-            [Frozen] Mock<ITimesheetDatesCalculator> timesheetEndDateCalculatorMock,
-            TimesheetFactory sut)
-        {
-            // act..
-            sut.Create(timesheetConfigModel, startDate);
-
-            // assert..
-            timesheetEndDateCalculatorMock.Verify(
-                m =>
-                    m.CalculateEndDate(It.Is<DateTime>(dt => dt == startDate),
-                        It.Is<TimesheetFrequency>(f => f == timesheetConfigModel.Frequency)), Times.Once());
-        }
-
-        [Theory, AutoMoqData]
-        public void Initialize_ShouldPopulate_TimesheetEndDate_WithCorrectValue(
+        public void Create_ShouldPopulate_TimesheetEndDate_WithCorrectValue(
             DateTime effectiveDate,
             DateTime endDate,
             TimesheetConfigModel timesheetConfigModel,
@@ -102,23 +85,7 @@ namespace Cmx.Timesheet.Services.Tests
         }
 
         [Theory, AutoMoqData]
-        public void Initialize_ShouldCalculateCorrectTimesheetEndDate_WhenConfigFrequencyIsWeekly(IFixture fixture,
-            DateTime startDate, TimesheetFactory sut)
-        {
-            // arrange..
-            var config = fixture.Build<TimesheetConfigModel>()
-                .With(m => m.Frequency, TimesheetFrequency.Weekly)
-                .Create();
-
-            // act..
-            var actual = sut.Create(config, startDate);
-
-            // assert..
-            actual.EndDate.ShouldBe(startDate.AddDays(7));
-        }
-
-        [Theory, AutoMoqData]
-        public void Initialize_ShouldCalculateCorrectWorkDays_When_TimesheetFrequencyIsMonthly(IFixture fixture,
+        public void Create_ShouldCalculateCorrectWorkDays_When_TimesheetFrequencyIsMonthly(IFixture fixture,
             DateTime startDate, TimesheetFactory sut)
         {
             // arrange..

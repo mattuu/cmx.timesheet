@@ -6,6 +6,6 @@ namespace Cmx.Timesheet.Services
 {
     public interface ITimesheetFactory
     {
-        TimesheetModel Create(TimesheetConfigModel configuration, DateTime startDate);
+        TimesheetModel Create(TimesheetConfigModel configuration, DateTime effectiveDate);
     }
 }

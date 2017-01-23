@@ -33,7 +33,10 @@ namespace Cmx.Timesheet.Services
                 EndDate = endDate,
                 WorkDays = workdays.Select(date => new WorkDayModel
                 {
-                    Date = date
+                    Date = date,
+                    StartTime = configuration.DefaultStartTime,
+                    EndTime = configuration.DefaultEndTime,
+                    BreakDuration = configuration.DefaultBreakEndTime.Subtract(configuration.DefaultBreakStartTime)
                 })    
             };           
           

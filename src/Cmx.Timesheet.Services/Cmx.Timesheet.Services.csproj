@@ -53,6 +53,7 @@
     <Compile Include="ITimesheetProvider.cs" />
     <Compile Include="ITimesheetWorkdaysCalculator.cs" />
     <Compile Include="ITimesheetWorkflowService.cs" />
+    <Compile Include="IWorkDaySubmitService.cs" />
     <Compile Include="TimesheetConfigurator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimesheetDatesCalculator.cs" />

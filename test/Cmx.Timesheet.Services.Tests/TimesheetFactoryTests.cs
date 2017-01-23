@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cmx.Timesheet.DataAccess.Models;
 using Cmx.Timesheet.DataAccess.Models.Configuration;
 using Cmx.Timesheet.TestUtils.Attributes;
 using Moq;
@@ -106,19 +105,21 @@ namespace Cmx.Timesheet.Services.Tests
             [Frozen] Mock<ITimesheetDatesCalculator> timesheetDatesCalculatorMock,
             DateTime effectiveDate,
             DateTime startDate,
-            DateTime endDate, 
+            DateTime endDate,
             TimesheetConfigModel config,
             TimesheetFactory sut)
         {
             // arrange..
-            timesheetDatesCalculatorMock.Setup(m => m.CalculateStartDate(effectiveDate, config.Frequency)).Returns(startDate);
-            timesheetDatesCalculatorMock.Setup(m => m.CalculateEndDate(effectiveDate, config.Frequency)).Returns(endDate);
+            timesheetDatesCalculatorMock.Setup(m => m.CalculateStartDate(effectiveDate, config.Frequency))
+                .Returns(startDate);
+            timesheetDatesCalculatorMock.Setup(m => m.CalculateEndDate(effectiveDate, config.Frequency))
+                .Returns(endDate);
 
             // act..
             sut.Create(config, effectiveDate);
 
             // assert..
-            timesheetWorkdaysCalculatorMock.Verify(m => m.Calculate(It.Is<DateTime>(d => d == startDate), 
+            timesheetWorkdaysCalculatorMock.Verify(m => m.Calculate(It.Is<DateTime>(d => d == startDate),
                 It.Is<DateTime>(d => d == endDate),
                 It.Is<TimesheetFrequency>(f => f == config.Frequency),
                 It.Is<TimesheetApplicableWeekDays>(wd => wd == config.ApplicableDays)), Times.Once());
@@ -126,20 +127,23 @@ namespace Cmx.Timesheet.Services.Tests
 
         [Theory, AutoMoqData]
         public void Create_ShouldPopulate_WorkDays_FromITimesheetWorkdaysCalculator(
-          [Frozen] Mock<ITimesheetWorkdaysCalculator> timesheetWorkdaysCalculatorMock,
-          [Frozen] Mock<ITimesheetDatesCalculator> timesheetDatesCalculatorMock,
-          DateTime effectiveDate,
-          DateTime startDate,
-          DateTime endDate,
-          IEnumerable<DateTime> workDays,
-          TimesheetConfigModel config,
-          TimesheetFactory sut)
+            [Frozen] Mock<ITimesheetWorkdaysCalculator> timesheetWorkdaysCalculatorMock,
+            [Frozen] Mock<ITimesheetDatesCalculator> timesheetDatesCalculatorMock,
+            DateTime effectiveDate,
+            DateTime startDate,
+            DateTime endDate,
+            IEnumerable<DateTime> workDays,
+            TimesheetConfigModel config,
+            TimesheetFactory sut)
         {
             // arrange..
-            timesheetDatesCalculatorMock.Setup(m => m.CalculateStartDate(effectiveDate, config.Frequency)).Returns(startDate);
-            timesheetDatesCalculatorMock.Setup(m => m.CalculateEndDate(effectiveDate, config.Frequency)).Returns(endDate);
+            timesheetDatesCalculatorMock.Setup(m => m.CalculateStartDate(effectiveDate, config.Frequency))
+                .Returns(startDate);
+            timesheetDatesCalculatorMock.Setup(m => m.CalculateEndDate(effectiveDate, config.Frequency))
+                .Returns(endDate);
 
-            timesheetWorkdaysCalculatorMock.Setup(m => m.Calculate(startDate,endDate,config.Frequency,config.ApplicableDays)).Returns(workDays);
+            timesheetWorkdaysCalculatorMock.Setup(
+                m => m.Calculate(startDate, endDate, config.Frequency, config.ApplicableDays)).Returns(workDays);
 
             // act..
             var actual = sut.Create(config, effectiveDate);
@@ -147,7 +151,43 @@ namespace Cmx.Timesheet.Services.Tests
             // assert..
             var expectations = actual.WorkDays.Select(wd => wd.AsSource()
                 .OfLikeness<DateTime>()
-                .With(dt => dt.Date).EqualsWhen((m, dt) => m.Date == dt));
+                .With(dt => dt.Date).EqualsWhen((m, dt) => m.Date == dt)
+                .OmitAutoComparison());
+
+            expectations.Cast<object>().SequenceEqual(workDays.Cast<object>()).ShouldBeTrue();
+        }
+
+        [Theory, AutoMoqData]
+        public void Create_ShouldSetTimeRelatedPropertiesOnAllWorkDays_WithTimesheetConfigModelValues(
+            [Frozen] Mock<ITimesheetWorkdaysCalculator> timesheetWorkdaysCalculatorMock,
+            [Frozen] Mock<ITimesheetDatesCalculator> timesheetDatesCalculatorMock,
+            DateTime effectiveDate,
+            DateTime startDate,
+            DateTime endDate,
+            IEnumerable<DateTime> workDays,
+            TimesheetConfigModel config,
+            TimesheetFactory sut)
+        {
+            // arrange..
+            timesheetDatesCalculatorMock.Setup(m => m.CalculateStartDate(effectiveDate, config.Frequency))
+                .Returns(startDate);
+            timesheetDatesCalculatorMock.Setup(m => m.CalculateEndDate(effectiveDate, config.Frequency))
+                .Returns(endDate);
+
+            timesheetWorkdaysCalculatorMock.Setup(
+                m => m.Calculate(startDate, endDate, config.Frequency, config.ApplicableDays)).Returns(workDays);
+
+            // act..
+            var actual = sut.Create(config, effectiveDate);
+
+            // assert..
+            var expectations = actual.WorkDays.Select(wd => wd.AsSource()
+                .OfLikeness<TimesheetConfigModel>()
+                .With(cm => cm.DefaultStartTime).EqualsWhen((m, cm) => m.StartTime == cm.DefaultStartTime)
+                .With(cm => cm.DefaultEndTime).EqualsWhen((m, cm) => m.EndTime == cm.DefaultEndTime)
+                .With(cm => cm.DefaultBreakStartTime).EqualsWhen((m, cm) => m.BreakDuration == cm.DefaultBreakEndTime.Subtract(cm.DefaultBreakStartTime))
+                .With(cm => cm.DefaultBreakEndTime).EqualsWhen((m, cm) => m.BreakDuration == cm.DefaultBreakEndTime.Subtract(cm.DefaultBreakStartTime))
+                .OmitAutoComparison());
 
             expectations.Cast<object>().SequenceEqual(workDays.Cast<object>()).ShouldBeTrue();
         }

@@ -47,7 +47,9 @@
     <Compile Include="TimesheetListItem.cs" />
     <Compile Include="TimesheetUpdateItem.cs" />
     <Compile Include="WorkDayCreateItem.cs" />
+    <Compile Include="WorkDayDetailItem.cs" />
     <Compile Include="WorkDayListItem.cs" />
+    <Compile Include="WorkDaySubmitItem.cs" />
     <Compile Include="WorkDayUpdateItem.cs" />
     <Compile Include="WorkDayUpdateItemBase.cs" />
   </ItemGroup>

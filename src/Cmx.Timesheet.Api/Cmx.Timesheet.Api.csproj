@@ -133,6 +133,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\TimesheetController.cs" />
+    <Compile Include="Controllers\WorkDayController.cs" />
     <Compile Include="Filters\CreateEmptyActionInstanceIfNullAttribute.cs" />
     <Compile Include="Filters\EnableRoleImpersonationAttribute.cs" />
     <Compile Include="Filters\LoggingExceptionFilter.cs" />

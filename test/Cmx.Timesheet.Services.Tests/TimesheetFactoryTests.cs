@@ -189,7 +189,10 @@ namespace Cmx.Timesheet.Services.Tests
                 .With(cm => cm.DefaultBreakEndTime).EqualsWhen((m, cm) => m.BreakDuration == cm.DefaultBreakEndTime.Subtract(cm.DefaultBreakStartTime))
                 .OmitAutoComparison());
 
-            expectations.Cast<object>().SequenceEqual(workDays.Cast<object>()).ShouldBeTrue();
+            foreach (var expectation in expectations)
+            {
+                expectation.ShouldEqual(config);
+            }
         }
     }
 }

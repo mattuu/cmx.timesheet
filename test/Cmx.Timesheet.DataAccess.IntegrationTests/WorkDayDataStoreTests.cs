@@ -28,7 +28,7 @@ namespace Cmx.Timesheet.DataAccess.IntegrationTests
             var list = collection.Find(filter).First();
             
             list.ShouldNotBeNull();
-            list.TimesheetId.ShouldBe(model.TimesheetId);
+            //list.TimesheetId.ShouldBe(model.TimesheetId);
 
             collection.DeleteOne(filter);
         }

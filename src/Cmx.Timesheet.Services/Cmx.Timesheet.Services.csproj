@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ITimesheetConfigurator.cs" />
     <Compile Include="ITimesheetFactory.cs" />
+    <Compile Include="ITimesheetManager.cs" />
     <Compile Include="ITimesheetProvider.cs" />
     <Compile Include="ITimesheetWorkdaysCalculator.cs" />
     <Compile Include="ITimesheetWorkflowService.cs" />

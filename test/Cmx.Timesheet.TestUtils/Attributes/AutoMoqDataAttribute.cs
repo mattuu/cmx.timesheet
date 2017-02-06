@@ -1,4 +1,5 @@
-﻿using Ploeh.AutoFixture;
+﻿using Cmx.Timesheet.TestUtils.Customizations;
+using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.AutoMoq;
 using Ploeh.AutoFixture.Xunit2;
 
@@ -10,7 +11,8 @@ namespace Cmx.Timesheet.TestUtils.Attributes
             : base(new Fixture())
         {
             Fixture.Customize(new AutoMoqCustomization())
-                .Behaviors.Add(new OmitOnRecursionBehavior());
+                   .Customize(new ObjectIdCustomization())
+                   .Behaviors.Add(new OmitOnRecursionBehavior());
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cmx.Timesheet.Api.Models;
+using Cmx.Timesheet.DataAccess.Models;
 
 namespace Cmx.Timesheet.Services
 {
@@ -14,5 +15,7 @@ namespace Cmx.Timesheet.Services
         Task<TimesheetDetailsItem> CreateTimesheet(TimesheetCreateItem timesheetCreateItem);
 
         Task<TimesheetDetailsItem> UpdateTimesheet(Guid timesheetId, TimesheetUpdateItem timesheetUpdateItem);
+
+        Task<TimesheetModel> GetByUserAndDate(Guid userId, DateTime dateTime);
     }
 }

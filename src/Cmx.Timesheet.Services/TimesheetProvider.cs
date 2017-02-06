@@ -113,5 +113,10 @@ namespace Cmx.Timesheet.Services
             //    //});
             //});
         }
+
+        public Task<TimesheetModel> GetByUserAndDate(Guid userId, DateTime dateTime)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

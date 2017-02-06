@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimesheetDatesCalculator.cs" />
     <Compile Include="TimesheetFactory.cs" />
+    <Compile Include="TimesheetManager.cs" />
     <Compile Include="TimesheetProvider.cs" />
     <Compile Include="TimesheetWorkdaysCalculator.cs" />
     <Compile Include="TimesheetWorkflowService.cs" />

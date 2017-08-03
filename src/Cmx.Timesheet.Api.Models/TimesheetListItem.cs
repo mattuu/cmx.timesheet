@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Cmx.Timesheet.Api.Models
+﻿namespace Cmx.Timesheet.Api.Models
 {
     public class TimesheetListItem : TimesheetItemBase
     {
